@@ -36,7 +36,7 @@ template("gen_decision_forest") {
     cflags = [ "-Wno-unused-label" ]
   }
 
-  source_set(target_name) {
+  llvm_source_set(target_name) {
     configs += [
       "${llvm_root_dir}llvm/utils/gn/build:clang_code",
       ":${target_name}Config",

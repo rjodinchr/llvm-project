@@ -112,7 +112,7 @@ if (libunwind_enable_shared && current_os != "android") {
 
 if (libunwind_enable_static) {
   template("libunwind_static_library") {
-    static_library(target_name) {
+    llvm_static_library(target_name) {
       output_dir = unwind_output_dir
       output_name = invoker.output_name
       complete_static_lib = true

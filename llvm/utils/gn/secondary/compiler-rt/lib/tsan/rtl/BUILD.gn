@@ -9,9 +9,9 @@ llvm_source_set("cxx_sources") {
 }
 
 if (current_os == "mac") {
-  tsan_target_type = "shared_library"
+  tsan_target_type = "llvm_shared_library"
 } else {
-  tsan_target_type = "static_library"
+  tsan_target_type = "llvm_static_library"
 }
 
 target(tsan_target_type, "rtl") {

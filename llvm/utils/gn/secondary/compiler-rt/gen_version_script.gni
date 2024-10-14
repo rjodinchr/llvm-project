@@ -27,7 +27,7 @@ template("gen_version_script") {
       ]
     }
   } else {
-    source_set(target_name) {
+    llvm_source_set(target_name) {
     }
     not_needed(invoker,
                [

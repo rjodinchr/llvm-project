@@ -7,9 +7,9 @@ import("//build_overrides/llvm.gni")
 # -Wl,-runpath=$ORIGIN/../lib in executables on unix or the corresponding @loader_path on mac,
 # no need for .exports files, etc.)
 if (current_os == "win") {
-  liblldb_type = "shared_library"
+  liblldb_type = "llvm_shared_library"
 } else {
-  liblldb_type = "static_library"
+  liblldb_type = "llvm_static_library"
 }
 
 target(liblldb_type, "liblldb") {
