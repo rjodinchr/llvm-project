@@ -1,15 +1,17 @@
-static_library("Breakpoint") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Breakpoint") {
   output_name = "lldbBreakpoint"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/include/lldb/Host:Config",
-    "//lldb/source/Core",
-    "//lldb/source/Expression",
-    "//lldb/source/Interpreter",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/include/lldb/Host:Config",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Expression",
+    "${llvm_root_dir}lldb/source/Interpreter",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "Breakpoint.cpp",

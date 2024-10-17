@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/write_vcsrevision.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/write_vcsrevision.gni")
 
 config("write_vcsrevision_config") {
   # To pick up the generated inc file.
@@ -13,23 +15,23 @@ write_vcsrevision("write_vcsversion") {
   public_configs = [ ":write_vcsrevision_config" ]
 }
 
-static_library("Common") {
+llvm_static_library("Common") {
   output_name = "lldCommon"
-  configs += [ "//llvm/utils/gn/build:lld_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lld_code" ]
   public_deps = [
     # public_dep because public header Version.h includes generated Version.inc.
-    "//lld/include/lld/Common:version",
+    "${llvm_root_dir}lld/include/lld/Common:version",
   ]
   deps = [
     ":write_vcsversion",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/Demangle",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "Args.cpp",

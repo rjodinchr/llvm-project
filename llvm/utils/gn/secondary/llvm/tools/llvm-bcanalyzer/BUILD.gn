@@ -1,7 +1,9 @@
-executable("llvm-bcanalyzer") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-bcanalyzer") {
   deps = [
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-bcanalyzer.cpp" ]
 }

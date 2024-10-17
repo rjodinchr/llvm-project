@@ -1,3 +1,5 @@
+import("//build_overrides/llvm.gni")
+
 # Defines compiled_action().
 #
 # compiled_action() is like action(), except that it runs a built binary
@@ -27,7 +29,7 @@
 # Example use:
 #
 #   compiled_action("run_my_tool") {
-#     tool = "//tools/something:mytool"
+#     tool = "${llvm_root_dir}tools/something:mytool"
 #     inputs = [ "my_input_file.txt" ]
 #     outputs = [ "$target_gen_dir/mysource.inc" ]
 #     args = [
@@ -38,7 +40,7 @@
 #
 # You would typically declare your tool like this:
 #   if (host_toolchain == current_toolchain) {
-#     executable("mytool") {
+#     llvm_executable("mytool") {
 #       ...
 #     }
 #   }
@@ -67,7 +69,7 @@ template("compiled_action") {
     host_executable = get_label_info(host_tool, "root_out_dir") + "/bin/" +
                       get_label_info(host_tool, "name")
     deps = [ host_tool ]
-    script = "//llvm/utils/gn/build/run_built_binary.py"
+    script = "${llvm_root_dir}llvm/utils/gn/build/run_built_binary.py"
     args = [ rebase_path(host_executable, root_build_dir) ] + invoker.args
   }
 }

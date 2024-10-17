@@ -1,8 +1,10 @@
-import("//llvm/utils/gn/build/buildflags.gni")
-import("//llvm/utils/gn/build/mac_sdk.gni")
-import("//llvm/utils/gn/build/sysroot.gni")
-import("//llvm/utils/gn/build/toolchain/compiler.gni")
-import("//llvm/utils/gn/build/toolchain/target_flags.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/buildflags.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/mac_sdk.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/sysroot.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/toolchain/compiler.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/toolchain/target_flags.gni")
 
 declare_args() {
   # Whether to build everything with test coverage information.
@@ -21,7 +23,7 @@ declare_args() {
   #    This will produce *.profraw files in the current working directory.
   # 3. Run `llvm-profdata merge *.profraw -o llvm.profdata` to merge them.
   # 4. Then build again, with this set to false, and with
-  #    `llvm_pgo_use = "//llvm.profdata"` set to use the created profile.
+  #    `llvm_pgo_use = "${llvm_root_dir}llvm.profdata"` set to use the created profile.
   llvm_pgo_instrument = false
 
   # If non-empty, path to merged profiling data used for optimization
@@ -463,8 +465,8 @@ config("thin_archive") {
 
 config("llvm_code") {
   include_dirs = [
-    "//llvm/include",
-    "$root_gen_dir/llvm/include",
+    "${llvm_root_dir}llvm/include",
+    "${llvm_root_gen_dir}/llvm/include",
   ]
   if (current_os != "win") {
     cflags = [ "-fPIC" ]
@@ -473,8 +475,8 @@ config("llvm_code") {
 
 config("lld_code") {
   include_dirs = [
-    "//lld/include",
-    "$root_gen_dir/lld/include",
+    "${llvm_root_dir}lld/include",
+    "${llvm_root_gen_dir}/lld/include",
   ]
 }
 
@@ -483,20 +485,20 @@ config("clang_code") {
     cflags = [ "-fno-strict-aliasing" ]
   }
   include_dirs = [
-    "//clang/include",
-    "$root_gen_dir/clang/include",
+    "${llvm_root_dir}clang/include",
+    "${llvm_root_gen_dir}/clang/include",
   ]
 }
 
 config("bolt_code") {
   include_dirs = [
-    "//bolt/include",
-    "$root_gen_dir/bolt/include",
+    "${llvm_root_dir}bolt/include",
+    "${llvm_root_gen_dir}/bolt/include",
   ]
 }
 
 config("crt_code") {
-  include_dirs = [ "//compiler-rt/lib" ]
+  include_dirs = [ "${llvm_root_dir}compiler-rt/lib" ]
   cflags = [
     "-fno-builtin",
     "-gline-tables-only",
@@ -528,8 +530,8 @@ config("lldb_code") {
     cflags = [ "-fno-strict-aliasing" ]
   }
   include_dirs = [
-    "//lldb/include",
-    "$root_gen_dir/lldb/include",
+    "${llvm_root_dir}lldb/include",
+    "${llvm_root_gen_dir}/lldb/include",
   ]
 }
 

@@ -1,13 +1,15 @@
-import("//compiler-rt/target.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}compiler-rt/target.gni")
 
 scudo_cflags = [
   "-Werror=conversion",
   "-nostdinc++",
 ]
 
-source_set("sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   cflags = scudo_cflags
   sources = [
     "allocator_common.h",
@@ -84,18 +86,18 @@ source_set("sources") {
   public_configs = [ ":scudo_config" ]
 }
 
-source_set("c_wrapper_sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("c_wrapper_sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   cflags = scudo_cflags
   sources = [ "wrappers_c.cpp" ]
 
   public_configs = [ ":scudo_config" ]
 }
 
-source_set("cxx_wrapper_sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("cxx_wrapper_sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   cflags = scudo_cflags
   sources = [ "wrappers_cpp.cpp" ]
 

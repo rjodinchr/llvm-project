@@ -1,5 +1,7 @@
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 tablegen("Opts") {
   visibility = [ ":OptionTests" ]
@@ -9,8 +11,8 @@ tablegen("Opts") {
 unittest("OptionTests") {
   deps = [
     ":Opts",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "OptionMarshallingTest.cpp",

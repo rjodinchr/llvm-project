@@ -1,10 +1,12 @@
-static_library("MCA") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MCA") {
   output_name = "LLVMAMDGPUTargetMCA"
   deps = [
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/Target/AMDGPU/MCTargetDesc",
-    "//llvm/lib/Target/AMDGPU/Utils",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/Utils",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [ "AMDGPUCustomBehaviour.cpp" ]

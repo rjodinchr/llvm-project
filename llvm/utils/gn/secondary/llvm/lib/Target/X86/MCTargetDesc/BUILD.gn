@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("X86GenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -42,7 +44,7 @@ tablegen("X86GenSubtargetInfo") {
   td_file = "../X86.td"
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMX86Desc"
 
   # This should contain tablegen targets generating .inc files included
@@ -57,13 +59,13 @@ static_library("MCTargetDesc") {
   deps = [
     ":X86GenAsmWriter",
     ":X86GenAsmWriter1",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/X86/TargetInfo",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/X86/TargetInfo",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

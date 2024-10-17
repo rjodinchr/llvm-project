@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("WebAssemblyGenInstrInfo") {
   visibility = [ ":TargetInfo" ]
@@ -6,14 +8,14 @@ tablegen("WebAssemblyGenInstrInfo") {
   td_file = "../WebAssembly.td"
 }
 
-static_library("TargetInfo") {
+llvm_static_library("TargetInfo") {
   output_name = "LLVMWebAssemblyInfo"
 
   # This should contain tablegen targets generating .inc files included
   # by other targets. .inc files only used by .cpp files in this directory
   # should be in deps instead.
   public_deps = [ ":WebAssemblyGenInstrInfo" ]
-  deps = [ "//llvm/lib/Support" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   include_dirs = [ ".." ]
   sources = [ "WebAssemblyTargetInfo.cpp" ]
 }

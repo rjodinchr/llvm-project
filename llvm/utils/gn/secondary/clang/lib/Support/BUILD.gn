@@ -1,6 +1,8 @@
-static_library("Support") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Support") {
   output_name = "clangSupport"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
-  deps = [ "//llvm/lib/Support" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [ "RISCVVIntrinsicUtils.cpp" ]
 }

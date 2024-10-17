@@ -1,4 +1,6 @@
-executable("not") {
-  deps = [ "//llvm/lib/Support" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("not") {
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [ "not.cpp" ]
 }

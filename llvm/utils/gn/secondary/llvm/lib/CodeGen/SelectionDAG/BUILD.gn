@@ -1,14 +1,16 @@
-static_library("SelectionDAG") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("SelectionDAG") {
   output_name = "LLVMSelectionDAG"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [
     "DAGCombiner.cpp",

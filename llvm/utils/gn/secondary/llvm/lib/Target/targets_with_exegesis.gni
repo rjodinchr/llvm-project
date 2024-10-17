@@ -1,4 +1,6 @@
-import("//llvm/lib/Target/targets.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
 
 targets_with_exegesis = []
 foreach(target, llvm_targets_to_build) {

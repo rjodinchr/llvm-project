@@ -1,11 +1,13 @@
-static_library("DWARFLinker") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("DWARFLinker") {
   output_name = "LLVMDWARFLinkerBase"
   deps = [
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "DWARFLinkerBase.cpp",

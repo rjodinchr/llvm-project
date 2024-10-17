@@ -1,10 +1,12 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("DWARFLinkerParallelTests") {
   deps = [
-    "//llvm/lib/DWARFLinker/Parallel",
-    "//llvm/lib/Support",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}llvm/lib/DWARFLinker/Parallel",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [
     "DWARFLinkerTest.cpp",

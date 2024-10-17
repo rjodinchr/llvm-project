@@ -1,13 +1,15 @@
-executable("clang-offload-bundler") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-offload-bundler") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//clang/lib/Driver",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Driver",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "ClangOffloadBundler.cpp" ]
 }

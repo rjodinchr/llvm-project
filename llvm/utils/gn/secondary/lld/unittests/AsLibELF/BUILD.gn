@@ -1,10 +1,12 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("LLDAsLibELFTests") {
-  configs += [ "//llvm/utils/gn/build:lld_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lld_code" ]
   deps = [
-    "//lld/Common",
-    "//lld/ELF",
+    "${llvm_root_dir}lld/Common",
+    "${llvm_root_dir}lld/ELF",
   ]
   sources = [
     "ROCm.cpp",

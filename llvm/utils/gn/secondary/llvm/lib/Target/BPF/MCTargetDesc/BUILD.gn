@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("BPFGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -30,7 +32,7 @@ tablegen("BPFGenSubtargetInfo") {
   td_file = "../BPF.td"
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMBPFDesc"
 
   # This should contain tablegen targets generating .inc files included
@@ -44,11 +46,11 @@ static_library("MCTargetDesc") {
   deps = [
     ":BPFGenAsmWriter",
     ":BPFGenMCCodeEmitter",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/BPF/TargetInfo",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/BPF/TargetInfo",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

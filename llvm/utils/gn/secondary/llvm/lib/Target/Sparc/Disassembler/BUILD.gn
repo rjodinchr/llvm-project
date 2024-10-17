@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("SparcGenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,13 +8,13 @@ tablegen("SparcGenDisassemblerTables") {
   td_file = "../Sparc.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMSparcDisassembler"
   deps = [
     ":SparcGenDisassemblerTables",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/Sparc/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/Sparc/MCTargetDesc",
   ]
   include_dirs = [ ".." ]
   sources = [ "SparcDisassembler.cpp" ]

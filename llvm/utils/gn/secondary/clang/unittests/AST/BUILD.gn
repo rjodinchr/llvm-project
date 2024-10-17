@@ -1,19 +1,21 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("ASTTests") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Testing",
-    "//clang/lib/Tooling",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Testing/Annotations",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Testing",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Testing/Annotations",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [
     "ASTContextParentMapTest.cpp",

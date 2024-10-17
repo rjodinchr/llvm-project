@@ -1,14 +1,16 @@
-static_library("Writer") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Writer") {
   output_name = "LLVMBitWriter"
   deps = [
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
 
   sources = [

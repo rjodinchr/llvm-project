@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("AVRGenAsmMatcher") {
   visibility = [ ":AsmParser" ]
@@ -6,16 +8,16 @@ tablegen("AVRGenAsmMatcher") {
   td_file = "../AVR.td"
 }
 
-static_library("AsmParser") {
+llvm_static_library("AsmParser") {
   output_name = "LLVMAVRAsmParser"
   deps = [
     ":AVRGenAsmMatcher",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/AVR/MCTargetDesc",
-    "//llvm/lib/Target/AVR/TargetInfo",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/AVR/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/AVR/TargetInfo",
   ]
   include_dirs = [ ".." ]
   sources = [ "AVRAsmParser.cpp" ]

@@ -1,13 +1,15 @@
-executable("llvm-bolt-heatmap") {
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-bolt-heatmap") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
-    "//bolt/lib/Profile",
-    "//bolt/lib/Rewrite",
-    "//bolt/lib/Utils",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}bolt/lib/Profile",
+    "${llvm_root_dir}bolt/lib/Rewrite",
+    "${llvm_root_dir}bolt/lib/Utils",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
   ]
   sources = [ "heatmap.cpp" ]
 }

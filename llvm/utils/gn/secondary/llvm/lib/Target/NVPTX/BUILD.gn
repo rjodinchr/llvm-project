@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("NVPTXGenDAGISel") {
   visibility = [ ":LLVMNVPTXCodeGen" ]
@@ -6,25 +8,25 @@ tablegen("NVPTXGenDAGISel") {
   td_file = "NVPTX.td"
 }
 
-static_library("LLVMNVPTXCodeGen") {
+llvm_static_library("LLVMNVPTXCodeGen") {
   deps = [
     ":NVPTXGenDAGISel",
     "MCTargetDesc",
     "TargetInfo",
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/CodeGen/AsmPrinter",
-    "//llvm/lib/CodeGen/SelectionDAG",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/IPO",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
-    "//llvm/lib/Transforms/Vectorize",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/CodeGen/AsmPrinter",
+    "${llvm_root_dir}llvm/lib/CodeGen/SelectionDAG",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Transforms/Vectorize",
   ]
   include_dirs = [ "." ]
   sources = [
@@ -60,9 +62,9 @@ static_library("LLVMNVPTXCodeGen") {
 }
 
 # This is a bit different from most build files: Due to this group
-# having the directory's name, "//llvm/lib/Target/NVPTX" will refer to this
+# having the directory's name, "${llvm_root_dir}llvm/lib/Target/NVPTX" will refer to this
 # target, which pulls in the code in this directory *and all subdirectories*.
-# For most other directories, "//llvm/lib/Foo" only pulls in the code directly
+# For most other directories, "${llvm_root_dir}llvm/lib/Foo" only pulls in the code directly
 # in "llvm/lib/Foo". The forwarding targets in //llvm/lib/Target expect this
 # different behavior.
 group("NVPTX") {

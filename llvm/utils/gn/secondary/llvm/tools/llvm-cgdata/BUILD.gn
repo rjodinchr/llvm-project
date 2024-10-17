@@ -1,5 +1,7 @@
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/driver_executable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/driver_executable.gni")
 
 tablegen("Opts") {
   visibility = [ ":llvm-cgdata" ]
@@ -9,12 +11,12 @@ tablegen("Opts") {
 driver_executable("llvm-cgdata") {
   deps = [
     ":Opts",
-    "//llvm/lib/CGData",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/CGData",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-cgdata.cpp" ]
 }

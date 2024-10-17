@@ -1,11 +1,13 @@
-static_library("PDB") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("PDB") {
   output_name = "lldbPluginObjectFilePDB"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Symbol",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ObjectFilePDB.cpp" ]
 }

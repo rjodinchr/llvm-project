@@ -1,44 +1,46 @@
-static_library("Clang") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Clang") {
   output_name = "lldbPluginExpressionParserClang"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/CodeGen",
-    "//clang/lib/Driver",
-    "//clang/lib/Edit",
-    "//clang/lib/Frontend",
-    "//clang/lib/Frontend/Rewrite",
-    "//clang/lib/Lex",
-    "//clang/lib/Parse",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Sema",
-    "//clang/lib/Serialization",
-    "//lldb/source/Core",
-    "//lldb/source/Expression",
-    "//lldb/source/Host",
-    "//lldb/source/Interpreter",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/CodeGen",
+    "${llvm_root_dir}clang/lib/Driver",
+    "${llvm_root_dir}clang/lib/Edit",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Frontend/Rewrite",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Parse",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Sema",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Expression",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Interpreter",
 
-    #"//lldb/source/Plugins/Language/CPlusPlus", # 3-hop dependency cycle
-    "//lldb/source/Plugins/LanguageRuntime/CPlusPlus",
-    "//lldb/source/Plugins/LanguageRuntime/ObjC",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/ExecutionEngine",
-    "//llvm/lib/ExecutionEngine/MCJIT",
+    #"${llvm_root_dir}lldb/source/Plugins/Language/CPlusPlus", # 3-hop dependency cycle
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/CPlusPlus",
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/ObjC",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/MCJIT",
 
-    #"//lldb/source/Plugins/TypeSystem/Clang", # Dependency cycle
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/IPO",
+    #"${llvm_root_dir}lldb/source/Plugins/TypeSystem/Clang", # Dependency cycle
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
   ]
 
   # Uses source-relative paths for own includes (!)
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "ASTResultSynthesizer.cpp",
     "ASTStructExtractor.cpp",

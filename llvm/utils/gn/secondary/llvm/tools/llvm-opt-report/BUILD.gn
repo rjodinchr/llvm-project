@@ -1,10 +1,12 @@
-executable("llvm-opt-report") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-opt-report") {
   deps = [
-    "//llvm/lib/Demangle",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/Remarks",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Remarks",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "OptReport.cpp" ]
 }

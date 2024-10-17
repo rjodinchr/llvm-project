@@ -1,24 +1,26 @@
-static_library("CPlusPlus") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("CPlusPlus") {
   output_name = "lldbPluginCPlusPlusLanguage"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/DataFormatters",
-    "//lldb/source/Host",
-    "//lldb/source/Plugins/Language/ClangCommon",
-    "//lldb/source/Plugins/LanguageRuntime/CPlusPlus",
-    "//lldb/source/Plugins/TypeSystem/Clang",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/DataFormatters",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Plugins/Language/ClangCommon",
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/CPlusPlus",
+    "${llvm_root_dir}lldb/source/Plugins/TypeSystem/Clang",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Reaches into Plugins/Language/ClangCommon.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "BlockPointer.cpp",
     "CPlusPlusLanguage.cpp",

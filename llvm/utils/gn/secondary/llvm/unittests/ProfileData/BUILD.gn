@@ -1,11 +1,13 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("ProfileDataTests") {
   deps = [
-    "//llvm/lib/IR",
-    "//llvm/lib/ProfileData",
-    "//llvm/lib/ProfileData/Coverage",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/ProfileData",
+    "${llvm_root_dir}llvm/lib/ProfileData/Coverage",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [
     "BPFunctionNodeTest.cpp",

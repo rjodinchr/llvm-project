@@ -1,19 +1,21 @@
-static_library("minidump") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("minidump") {
   output_name = "lldbPluginProcessMinidump"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Plugins/Process/Utility",
-    "//lldb/source/Plugins/Process/elf-core",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Plugins/Process/Utility",
+    "${llvm_root_dir}lldb/source/Plugins/Process/elf-core",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Reaches into Plugins/Process/Utility.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "MinidumpParser.cpp",
     "MinidumpTypes.cpp",

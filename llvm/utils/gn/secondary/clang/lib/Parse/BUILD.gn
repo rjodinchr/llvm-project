@@ -1,18 +1,20 @@
-static_library("Parse") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Parse") {
   output_name = "clangParse"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/include/clang/Parse:AttrParserStringSwitches",
-    "//clang/include/clang/Parse:AttrSubMatchRulesParserStringSwitches",
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/Sema",
-    "//llvm/lib/Frontend/OpenMP",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}clang/include/clang/Parse:AttrParserStringSwitches",
+    "${llvm_root_dir}clang/include/clang/Parse:AttrSubMatchRulesParserStringSwitches",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Sema",
+    "${llvm_root_dir}llvm/lib/Frontend/OpenMP",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "ParseAST.cpp",

@@ -1,14 +1,16 @@
-static_library("POSIX") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("POSIX") {
   output_name = "lldbPluginProcessPOSIX"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Plugins/Process/Utility",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Plugins/Process/Utility",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Reaches into Plugins/Platform/Process/Utility.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "CrashReason.cpp",
     "NativeProcessELF.cpp",

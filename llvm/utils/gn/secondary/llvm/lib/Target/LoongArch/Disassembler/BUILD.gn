@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("LoongArchGenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,14 +8,14 @@ tablegen("LoongArchGenDisassemblerTables") {
   td_file = "../LoongArch.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMLoongArchDisassembler"
   deps = [
     ":LoongArchGenDisassemblerTables",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/LoongArch/MCTargetDesc",
-    "//llvm/lib/Target/LoongArch/TargetInfo",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/LoongArch/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/LoongArch/TargetInfo",
   ]
   include_dirs = [ ".." ]
   sources = [ "LoongArchDisassembler.cpp" ]

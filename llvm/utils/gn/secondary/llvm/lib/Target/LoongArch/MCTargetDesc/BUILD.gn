@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("LoongArchGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -30,7 +32,7 @@ tablegen("LoongArchGenSubtargetInfo") {
   td_file = "../LoongArch.td"
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMLoongArchDesc"
 
   # This should contain tablegen targets generating .inc files included
@@ -44,10 +46,10 @@ static_library("MCTargetDesc") {
   deps = [
     ":LoongArchGenAsmWriter",
     ":LoongArchGenMCCodeEmitter",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/LoongArch/TargetInfo",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/LoongArch/TargetInfo",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("AMDGPUGenAsmMatcher") {
   visibility = [ ":AsmParser" ]
@@ -6,18 +8,18 @@ tablegen("AMDGPUGenAsmMatcher") {
   td_file = "../AMDGPU.td"
 }
 
-static_library("AsmParser") {
+llvm_static_library("AsmParser") {
   output_name = "LLVMAMDGPUAsmParser"
   deps = [
     ":AMDGPUGenAsmMatcher",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/AMDGPU/MCTargetDesc",
-    "//llvm/lib/Target/AMDGPU/TargetInfo",
-    "//llvm/lib/Target/AMDGPU/Utils",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/TargetInfo",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/Utils",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [ "AMDGPUAsmParser.cpp" ]

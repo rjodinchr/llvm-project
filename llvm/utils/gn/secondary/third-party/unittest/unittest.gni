@@ -1,3 +1,5 @@
+import("//build_overrides/llvm.gni")
+
 # This file defines a template for adding a unittest binary.
 #
 # It's a thin wrapper around GN's built-in executable() target type and
@@ -45,9 +47,9 @@ template("unittest") {
     output_dir = target_out_dir
 
     if (has_custom_main) {
-      deps += [ "//third-party/unittest:gtest" ]
+      deps += [ "${llvm_root_dir}third-party/unittest:gtest" ]
     } else {
-      deps += [ "//third-party/unittest/UnitTestMain" ]
+      deps += [ "${llvm_root_dir}third-party/unittest/UnitTestMain" ]
     }
     testonly = true
   }

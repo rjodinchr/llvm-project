@@ -1,12 +1,14 @@
-static_library("Inclusions") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Inclusions") {
   output_name = "clangToolingInclusions"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Tooling/Core",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "HeaderAnalysis.cpp",

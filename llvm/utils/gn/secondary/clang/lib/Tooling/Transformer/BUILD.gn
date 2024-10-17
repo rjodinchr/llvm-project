@@ -1,14 +1,16 @@
-static_library("Transformer") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Transformer") {
   output_name = "clangToolingTransformer"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/Tooling/Core",
-    "//clang/lib/Tooling/Refactoring",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang/lib/Tooling/Refactoring",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "Parsing.cpp",

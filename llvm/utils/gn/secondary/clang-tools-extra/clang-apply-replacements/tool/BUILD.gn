@@ -1,13 +1,15 @@
-executable("clang-apply-replacements") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-apply-replacements") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-apply-replacements",
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Tooling/Core",
-    "//clang/lib/Tooling/Refactoring",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clang-apply-replacements",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang/lib/Tooling/Refactoring",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [ "../include" ]
   sources = [ "ClangApplyReplacementsMain.cpp" ]

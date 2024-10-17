@@ -1,7 +1,9 @@
+import("//build_overrides/llvm.gni")
+
 action("SBLanguages") {
-  script = "//lldb/scripts/generate-sbapi-dwarf-enum.py"
+  script = "${llvm_root_dir}lldb/scripts/generate-sbapi-dwarf-enum.py"
   outputs = [ "$target_gen_dir/SBLanguages.h" ]
-  sources = [ "//llvm/include/llvm/BinaryFormat/Dwarf.def" ]
+  sources = [ "${llvm_root_dir}llvm/include/llvm/BinaryFormat/Dwarf.def" ]
   args = [
     rebase_path(sources[0], root_build_dir),
     "-o",

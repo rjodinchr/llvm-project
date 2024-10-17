@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("NVPTXGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -24,7 +26,7 @@ tablegen("NVPTXGenSubtargetInfo") {
   td_file = "../NVPTX.td"
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMNVPTXDesc"
 
   # This should contain tablegen targets generating .inc files included
@@ -37,10 +39,10 @@ static_library("MCTargetDesc") {
   ]
   deps = [
     ":NVPTXGenAsmWriter",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/NVPTX/TargetInfo",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/NVPTX/TargetInfo",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

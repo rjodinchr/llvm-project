@@ -1,12 +1,14 @@
-static_library("MCJIT") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MCJIT") {
   output_name = "LLVMMCJIT"
   deps = [
-    "//llvm/lib/ExecutionEngine",
-    "//llvm/lib/ExecutionEngine/RuntimeDyld",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/RuntimeDyld",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
   ]
   sources = [ "MCJIT.cpp" ]
 }

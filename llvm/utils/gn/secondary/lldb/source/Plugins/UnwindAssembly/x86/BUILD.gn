@@ -1,14 +1,16 @@
-static_library("x86") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("x86") {
   output_name = "lldbPluginUnwindAssemblyX86"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "UnwindAssembly-x86.cpp",

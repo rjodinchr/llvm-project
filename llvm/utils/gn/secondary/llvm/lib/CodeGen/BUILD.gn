@@ -1,25 +1,27 @@
-static_library("CodeGen") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("CodeGen") {
   output_name = "LLVMCodeGen"
   public_deps = [
     # Must be a public_dep because CodeGen's headers include llvm-config.h.
-    "//llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
   ]
   deps = [
-    "//llvm/include/llvm/CodeGen:GenVT",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/CGData",
-    "//llvm/lib/CodeGenTypes",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/ProfileData",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/ObjCARC",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/include/llvm/CodeGen:GenVT",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/CGData",
+    "${llvm_root_dir}llvm/lib/CodeGenTypes",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/ProfileData",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/ObjCARC",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [
     "AggressiveAntiDepBreaker.cpp",

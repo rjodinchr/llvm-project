@@ -1,9 +1,11 @@
-static_library("Offloading") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Offloading") {
   output_name = "LLVMFrontendOffloading"
   deps = [
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [
     "OffloadWrapper.cpp",

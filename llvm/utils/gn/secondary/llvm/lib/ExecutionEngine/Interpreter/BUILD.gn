@@ -1,11 +1,13 @@
-static_library("Interpreter") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Interpreter") {
   output_name = "LLVMInterpreter"
   deps = [
-    "//llvm/include/llvm/Config:config",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/ExecutionEngine",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "Execution.cpp",

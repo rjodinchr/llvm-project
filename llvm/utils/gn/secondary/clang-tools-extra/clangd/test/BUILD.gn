@@ -1,7 +1,9 @@
-import("//clang-tools-extra/clangd/xpc/enable.gni")
-import("//llvm/triples.gni")
-import("//llvm/utils/gn/build/libs/zlib/enable.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang-tools-extra/clangd/xpc/enable.gni")
+import("${llvm_root_dir}llvm/triples.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/libs/zlib/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
 import("clangd_lit_site_cfg_files.gni")
 
 template("write_lit_config") {
@@ -24,15 +26,15 @@ template("write_lit_config") {
 
 write_lit_config("lit_site_cfg") {
   # Fully-qualified instead of relative for LIT_SITE_CFG_IN_HEADER.
-  input = "//clang-tools-extra/clangd/test/lit.site.cfg.py.in"
+  input = "${llvm_root_dir}clang-tools-extra/clangd/test/lit.site.cfg.py.in"
   output = clangd_lit_site_cfg_file
 
   extra_values = [
     "CMAKE_CURRENT_BINARY_DIR=" +
-        rebase_path(get_label_info("//clang-tools-extra/clangd/test",
+        rebase_path(get_label_info("${llvm_root_dir}clang-tools-extra/clangd/test",
                                    "target_out_dir")),
     "CMAKE_CURRENT_SOURCE_DIR=" +
-        rebase_path("//clang-tools-extra/clangd/test"),
+        rebase_path("${llvm_root_dir}clang-tools-extra/clangd/test"),
 
     "CURRENT_TOOLS_DIR=",
     "CLANGD_ENABLE_REMOTE=0",
@@ -59,14 +61,14 @@ write_lit_config("lit_site_cfg") {
 
 write_lit_config("lit_unit_site_cfg") {
   # Fully-qualified instead of relative for LIT_SITE_CFG_IN_HEADER.
-  input = "//clang-tools-extra/clangd/unittests/lit.site.cfg.py.in"
+  input = "${llvm_root_dir}clang-tools-extra/clangd/unittests/lit.site.cfg.py.in"
   output = clangd_lit_unit_site_cfg_file
   extra_values = [
     "CMAKE_CURRENT_BINARY_DIR=" +
-        rebase_path(get_label_info("//clang-tools-extra/clangd/unittests",
+        rebase_path(get_label_info("${llvm_root_dir}clang-tools-extra/clangd/unittests",
                                    "target_out_dir")),
     "CMAKE_CURRENT_SOURCE_DIR=" +
-        rebase_path("//clang-tools-extra/clangd/unittests"),
+        rebase_path("${llvm_root_dir}clang-tools-extra/clangd/unittests"),
   ]
 }
 
@@ -77,19 +79,19 @@ group("test") {
   deps = [
     ":lit_site_cfg",
     ":lit_unit_site_cfg",
-    "//clang-tools-extra/clangd/index/dex/dexp",
-    "//clang-tools-extra/clangd/indexer:clangd-indexer",
-    "//clang-tools-extra/clangd/tool:clangd",
-    "//clang-tools-extra/clangd/unittests:ClangdTests",
-    "//llvm/utils/FileCheck",
-    "//llvm/utils/llvm-lit",
-    "//llvm/utils/not",
-    "//llvm/utils/split-file",
+    "${llvm_root_dir}clang-tools-extra/clangd/index/dex/dexp",
+    "${llvm_root_dir}clang-tools-extra/clangd/indexer:clangd-indexer",
+    "${llvm_root_dir}clang-tools-extra/clangd/tool:clangd",
+    "${llvm_root_dir}clang-tools-extra/clangd/unittests:ClangdTests",
+    "${llvm_root_dir}llvm/utils/FileCheck",
+    "${llvm_root_dir}llvm/utils/llvm-lit",
+    "${llvm_root_dir}llvm/utils/not",
+    "${llvm_root_dir}llvm/utils/split-file",
   ]
   if (clangd_build_xpc) {
     deps += [
-      "//clang-tools-extra/clangd/unittests/xpc:ClangdXpcTests",
-      "//clang-tools-extra/clangd/xpc/test-client:clangd-xpc-test-client",
+      "${llvm_root_dir}clang-tools-extra/clangd/unittests/xpc:ClangdXpcTests",
+      "${llvm_root_dir}clang-tools-extra/clangd/xpc/test-client:clangd-xpc-test-client",
     ]
   }
   testonly = true
@@ -120,5 +122,5 @@ action("check-clangd") {
   deps = [ ":test" ]
   testonly = true
 
-  pool = "//:console"
+  pool = "${llvm_root_dir}:console"
 }

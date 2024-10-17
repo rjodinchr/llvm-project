@@ -1,7 +1,9 @@
-executable("llvm-jitlink-executor") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-jitlink-executor") {
   deps = [
-    "//llvm/lib/ExecutionEngine/Orc/TargetProcess",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc/TargetProcess",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-jitlink-executor.cpp" ]
 }

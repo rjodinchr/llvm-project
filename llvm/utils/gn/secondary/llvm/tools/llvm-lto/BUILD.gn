@@ -1,16 +1,18 @@
-executable("llvm-lto") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-lto") {
   deps = [
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/LTO",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/LTO",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "llvm-lto.cpp" ]
 }

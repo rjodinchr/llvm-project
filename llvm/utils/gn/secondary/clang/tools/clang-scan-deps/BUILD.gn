@@ -1,5 +1,7 @@
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/driver_executable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/driver_executable.gni")
 
 tablegen("Opts") {
   visibility = [ ":clang-scan-deps" ]
@@ -7,22 +9,22 @@ tablegen("Opts") {
 }
 
 driver_executable("clang-scan-deps") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
     ":Opts",
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/CodeGen",
-    "//clang/lib/Driver",
-    "//clang/lib/Frontend",
-    "//clang/lib/FrontendTool",
-    "//clang/lib/Lex",
-    "//clang/lib/Parse",
-    "//clang/lib/Serialization",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/DependencyScanning",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/CodeGen",
+    "${llvm_root_dir}clang/lib/Driver",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/FrontendTool",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Parse",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/DependencyScanning",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ClangScanDeps.cpp" ]
 }

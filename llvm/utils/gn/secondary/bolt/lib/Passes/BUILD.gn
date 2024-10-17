@@ -1,15 +1,17 @@
-static_library("Passes") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Passes") {
   output_name = "LLVMBOLTPasses"
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
-    "//bolt/lib/Core",
-    "//bolt/lib/Utils",
-    "//llvm/lib/CodeGen/AsmPrinter",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Utils",
-    "//llvm/utils/gn/build/libs/pthread",
+    "${llvm_root_dir}bolt/lib/Core",
+    "${llvm_root_dir}bolt/lib/Utils",
+    "${llvm_root_dir}llvm/lib/CodeGen/AsmPrinter",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/pthread",
   ]
   sources = [
     "ADRRelaxationPass.cpp",

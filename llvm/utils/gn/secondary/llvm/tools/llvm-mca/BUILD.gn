@@ -1,17 +1,19 @@
-import("//llvm/lib/Target/targets.gni")
+import("//build_overrides/llvm.gni")
 
-executable("llvm-mca") {
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+
+llvm_executable("llvm-mca") {
   deps = [
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/MCA",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:AllTargetsAsmParsers",
-    "//llvm/lib/Target:AllTargetsDescs",
-    "//llvm/lib/Target:AllTargetsDisassemblers",
-    "//llvm/lib/Target:AllTargetsInfos",
-    "//llvm/lib/Target:AllTargetsMCAs",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/MCA",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsAsmParsers",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsDescs",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsDisassemblers",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsInfos",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsMCAs",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [
     ".",

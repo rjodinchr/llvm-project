@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/libs/pthread/enable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/libs/pthread/enable.gni")
 
 config("pthread_config") {
   visibility = [ ":pthread" ]

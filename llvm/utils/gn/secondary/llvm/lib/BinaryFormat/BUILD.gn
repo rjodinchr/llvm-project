@@ -1,8 +1,10 @@
-static_library("BinaryFormat") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("BinaryFormat") {
   output_name = "LLVMBinaryFormat"
   deps = [
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "AMDGPUMetadataVerifier.cpp",

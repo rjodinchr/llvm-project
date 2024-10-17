@@ -1,6 +1,8 @@
-import("//llvm/tools/binutils_symlinks.gni")
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/tools/binutils_symlinks.gni")
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
 
 tablegen("TapiOpts") {
   visibility = [ ":llvm-readtapi" ]
@@ -23,15 +25,15 @@ group("symlinks") {
   }
 }
 
-executable("llvm-readtapi") {
+llvm_executable("llvm-readtapi") {
   deps = [
     ":TapiOpts",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/TextAPI",
-    "//llvm/lib/TextAPI/BinaryReader",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TextAPI",
+    "${llvm_root_dir}llvm/lib/TextAPI/BinaryReader",
   ]
   sources = [
     "DiffEngine.cpp",

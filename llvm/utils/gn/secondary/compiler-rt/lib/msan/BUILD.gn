@@ -1,21 +1,23 @@
-import("//compiler-rt/target.gni")
+import("//build_overrides/llvm.gni")
 
-static_library("msan") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+import("${llvm_root_dir}compiler-rt/target.gni")
+
+llvm_static_library("msan") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
 
   output_dir = crt_current_out_dir
   assert(current_os == "linux", "MSan only works on Linux")
   output_name = "clang_rt.msan$crt_current_target_suffix"
 
   deps = [
-    "//compiler-rt/lib/interception:sources",
-    "//compiler-rt/lib/sanitizer_common:sources",
-    "//compiler-rt/lib/ubsan:sources",
+    "${llvm_root_dir}compiler-rt/lib/interception:sources",
+    "${llvm_root_dir}compiler-rt/lib/sanitizer_common:sources",
+    "${llvm_root_dir}compiler-rt/lib/ubsan:sources",
   ]
 
   complete_static_lib = true
-  configs -= [ "//llvm/utils/gn/build:thin_archive" ]
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:thin_archive" ]
   deps += [ ":msan_cxx" ]
 
   sources = [
@@ -51,18 +53,18 @@ static_library("msan") {
   # FIXME: msan_ignorelist.txt
 }
 
-static_library("msan_cxx") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_static_library("msan_cxx") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
 
   output_dir = crt_current_out_dir
   assert(current_os == "linux", "MSan only works on Linux")
   output_name = "clang_rt.msan_cxx$crt_current_target_suffix"
 
   complete_static_lib = true
-  configs -= [ "//llvm/utils/gn/build:thin_archive" ]
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:thin_archive" ]
 
-  deps = [ "//compiler-rt/lib/ubsan:cxx_sources" ]
+  deps = [ "${llvm_root_dir}compiler-rt/lib/ubsan:cxx_sources" ]
 
   sources = [ "msan_new_delete.cpp" ]
 }

@@ -1,5 +1,7 @@
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
 
 # create_clangd_xpc_framework() in cmake creates both the ClangdXPC.framework
 # bundle and the clangd.xpc bundle within it in a single action.
@@ -27,7 +29,7 @@ bundle_data("clangxpc_bundle_xpc_service_info_plist") {
 }
 
 bundle_data("clangxpc_bundle_xpc_service_executable") {
-  public_deps = [ "//clang-tools-extra/clangd/tool:clangd" ]
+  public_deps = [ "${llvm_root_dir}clang-tools-extra/clangd/tool:clangd" ]
   sources = [ "$root_out_dir/bin/clangd" ]
   outputs = [ "{{bundle_executable_dir}}/{{source_file_part}}" ]
 }
@@ -61,8 +63,8 @@ bundle_data("clangdxpc_bundle_info_plist") {
   outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
 }
 
-shared_library("ClangdXPCLib") {
-  deps = [ "//clang-tools-extra/clangd/tool:clangd" ]
+llvm_shared_library("ClangdXPCLib") {
+  deps = [ "${llvm_root_dir}clang-tools-extra/clangd/tool:clangd" ]
   sources = [ "ClangdXPC.cpp" ]
 }
 

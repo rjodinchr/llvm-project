@@ -1,13 +1,15 @@
-static_library("MCA") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MCA") {
   output_name = "LLVMTargetRISCVMCA"
   deps = [
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/MCA",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/RISCV/MCTargetDesc",
-    "//llvm/lib/Target/RISCV/TargetInfo",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/MCA",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/RISCV/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/RISCV/TargetInfo",
   ]
   include_dirs = [ ".." ]
   sources = [ "RISCVCustomBehaviour.cpp" ]

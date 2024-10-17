@@ -1,27 +1,29 @@
-static_library("Interpreter") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Interpreter") {
   output_name = "clangInterpreter"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Analysis",
-    "//clang/lib/Basic",
-    "//clang/lib/CodeGen",
-    "//clang/lib/Driver",
-    "//clang/lib/Edit",
-    "//clang/lib/Frontend",
-    "//clang/lib/FrontendTool",
-    "//clang/lib/Lex",
-    "//clang/lib/Parse",
-    "//clang/lib/Sema",
-    "//clang/lib/Serialization",
-    "//llvm/lib/ExecutionEngine/Orc",
-    "//llvm/lib/ExecutionEngine/Orc/Debugging",
-    "//llvm/lib/IR",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Target:NativeTarget",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/CodeGen",
+    "${llvm_root_dir}clang/lib/Driver",
+    "${llvm_root_dir}clang/lib/Edit",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/FrontendTool",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Parse",
+    "${llvm_root_dir}clang/lib/Sema",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc/Debugging",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Target:NativeTarget",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "CodeCompletion.cpp",

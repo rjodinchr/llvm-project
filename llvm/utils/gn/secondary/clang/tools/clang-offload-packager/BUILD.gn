@@ -1,10 +1,12 @@
-executable("clang-offload-packager") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-offload-packager") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
   ]
   sources = [ "ClangOffloadPackager.cpp" ]
 }

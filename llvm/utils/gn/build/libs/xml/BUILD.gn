@@ -1,6 +1,8 @@
-import("//llvm/utils/gn/build/libs/xml/enable.gni")
-import("//llvm/utils/gn/build/mac_sdk.gni")
-import("//llvm/utils/gn/build/sysroot.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/libs/xml/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/mac_sdk.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/sysroot.gni")
 
 config("xml_config") {
   visibility = [ ":xml" ]

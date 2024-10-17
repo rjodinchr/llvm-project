@@ -1,16 +1,18 @@
-executable("clang-repl") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-repl") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/Interpreter",
-    "//clang/lib/Tooling",
-    "//llvm/lib/ExecutionEngine/Orc",
-    "//llvm/lib/IR",
-    "//llvm/lib/LineEditor",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Interpreter",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/LineEditor",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
   ]
   sources = [ "ClangRepl.cpp" ]
   if (current_os == "linux") {

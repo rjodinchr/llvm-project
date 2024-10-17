@@ -1,5 +1,7 @@
-import("//clang/runtimes.gni")
-import("//compiler-rt/target.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/runtimes.gni")
+import("${llvm_root_dir}compiler-rt/target.gni")
 
 declare_args() {
   # Build libunwind as a shared library.
@@ -69,7 +71,7 @@ config("unwind_config") {
   cflags_c = [ "-std=c99" ]
   cflags_cc = [ "-fno-rtti" ]
   defines = [ "_LIBUNWIND_IS_NATIVE_ONLY" ]
-  include_dirs = [ "//libunwind/include" ]
+  include_dirs = [ "${llvm_root_dir}libunwind/include" ]
   if (current_os == "mac") {
     cflags += [ "-U__STRICT_ANSI__" ]
   }
@@ -79,7 +81,7 @@ config("unwind_config") {
 }
 
 if (libunwind_enable_shared && current_os != "android") {
-  shared_library("unwind_shared") {
+  llvm_shared_library("unwind_shared") {
     output_dir = unwind_output_dir
     output_name = "unwind"
     if (current_os == "linux" || current_os == "mac") {
@@ -99,11 +101,11 @@ if (libunwind_enable_shared && current_os != "android") {
     }
     sources = unwind_sources
     public = unwind_headers
-    deps = [ "//compiler-rt/lib/builtins" ]
+    deps = [ "${llvm_root_dir}compiler-rt/lib/builtins" ]
     configs += [ ":unwind_config" ]
     configs -= [
-      "//llvm/utils/gn/build:no_exceptions",
-      "//llvm/utils/gn/build:no_rtti",
+      "${llvm_root_dir}llvm/utils/gn/build:no_exceptions",
+      "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
     ]
   }
 }
@@ -114,7 +116,7 @@ if (libunwind_enable_static) {
       output_dir = unwind_output_dir
       output_name = invoker.output_name
       complete_static_lib = true
-      configs -= [ "//llvm/utils/gn/build:thin_archive" ]
+      configs -= [ "${llvm_root_dir}llvm/utils/gn/build:thin_archive" ]
       sources = unwind_sources
       public = unwind_headers
       if (!invoker.export) {
@@ -122,11 +124,11 @@ if (libunwind_enable_static) {
         cflags_cc = [ "-fvisibility-global-new-delete=force-hidden" ]
         defines = [ "_LIBUNWIND_HIDE_SYMBOLS" ]
       }
-      deps = [ "//compiler-rt/lib/builtins" ]
+      deps = [ "${llvm_root_dir}compiler-rt/lib/builtins" ]
       configs += [ ":unwind_config" ]
       configs -= [
-        "//llvm/utils/gn/build:no_exceptions",
-        "//llvm/utils/gn/build:no_rtti",
+        "${llvm_root_dir}llvm/utils/gn/build:no_exceptions",
+        "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
       ]
     }
   }

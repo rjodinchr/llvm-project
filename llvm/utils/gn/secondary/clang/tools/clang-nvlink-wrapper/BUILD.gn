@@ -1,31 +1,33 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("NVLinkOpts") {
   args = [ "-gen-opt-parser-defs" ]
   td_file = "NVLinkOpts.td"
 }
 
-executable("clang-nvlink-wrapper") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+llvm_executable("clang-nvlink-wrapper") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
     ":NVLinkOpts",
-    "//clang/lib/Basic",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/LTO",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Passes",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/LTO",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Passes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [ "ClangNVLinkWrapper.cpp" ]
 }

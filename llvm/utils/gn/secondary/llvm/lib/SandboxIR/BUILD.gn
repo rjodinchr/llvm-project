@@ -1,9 +1,11 @@
-static_library("SandboxIR") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("SandboxIR") {
   output_name = "LLVMSandboxIR"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "Argument.cpp",

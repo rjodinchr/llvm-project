@@ -1,6 +1,8 @@
-static_library("BLAKE3") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("BLAKE3") {
   output_name = "LLVMSupportBlake3"
-  deps = [ "//llvm/include/llvm/Config:llvm-config" ]
+  deps = [ "${llvm_root_dir}llvm/include/llvm/Config:llvm-config" ]
   sources = [
     "blake3.c",
     "blake3_dispatch.c",
@@ -15,7 +17,7 @@ static_library("BLAKE3") {
   ]
 }
 
-source_set("hack") {
+llvm_source_set("hack") {
   sources = [
     "blake3_avx2_x86-64_unix.S",
     "blake3_avx2_x86-64_windows_gnu.S",

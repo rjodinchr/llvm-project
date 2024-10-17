@@ -1,8 +1,10 @@
-static_library("HLSL") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("HLSL") {
   output_name = "LLVMFrontendHLSL"
   deps = [
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "HLSLResource.cpp" ]
 }

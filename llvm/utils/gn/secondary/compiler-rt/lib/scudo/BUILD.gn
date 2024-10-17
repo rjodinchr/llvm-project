@@ -1,9 +1,11 @@
-import("//llvm/lib/Target/targets.gni")
-import("//llvm/utils/gn/build/toolchain/compiler.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/toolchain/compiler.gni")
 
 supported_toolchains = []
 if (target_os == "linux" || target_os == "fuchsia") {
-  supported_toolchains += [ "//llvm/utils/gn/build/toolchain:stage2_unix" ]
+  supported_toolchains += [ "${llvm_root_dir}llvm/utils/gn/build/toolchain:stage2_unix" ]
 }
 supported_toolchains += supported_android_toolchains
 

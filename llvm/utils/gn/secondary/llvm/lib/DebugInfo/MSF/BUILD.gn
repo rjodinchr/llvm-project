@@ -1,6 +1,8 @@
-static_library("MSF") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MSF") {
   output_name = "LLVMDebugInfoMSF"
-  deps = [ "//llvm/lib/Support" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [
     "MSFBuilder.cpp",
     "MSFCommon.cpp",

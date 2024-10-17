@@ -1,12 +1,14 @@
-executable("dexp") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("dexp") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clangd",
-    "//clang-tools-extra/clangd:features",
-    "//clang-tools-extra/clangd/index/remote/unimplemented",
-    "//clang/lib/Basic",
-    "//llvm/lib/LineEditor",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clangd",
+    "${llvm_root_dir}clang-tools-extra/clangd:features",
+    "${llvm_root_dir}clang-tools-extra/clangd/index/remote/unimplemented",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/LineEditor",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [ "../../.." ]
   sources = [ "Dexp.cpp" ]

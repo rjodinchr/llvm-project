@@ -1,11 +1,13 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("SandboxIRTests") {
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/AsmParser",
-    "//llvm/lib/IR",
-    "//llvm/lib/SandboxIR",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/AsmParser",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/SandboxIR",
   ]
   sources = [
     "IntrinsicInstTest.cpp",

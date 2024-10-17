@@ -1,11 +1,13 @@
-executable("clang-diff") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-diff") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/ASTDiff",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/ASTDiff",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ClangDiff.cpp" ]
 }

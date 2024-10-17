@@ -1,7 +1,9 @@
-executable("yaml2obj") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("yaml2obj") {
   deps = [
-    "//llvm/lib/ObjectYAML",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/ObjectYAML",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "yaml2obj.cpp" ]
 }

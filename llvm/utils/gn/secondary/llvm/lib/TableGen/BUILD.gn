@@ -1,6 +1,8 @@
-static_library("TableGen") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("TableGen") {
   output_name = "LLVMTableGen"
-  deps = [ "//llvm/lib/Support" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [
     "DetailedRecordsBackend.cpp",
     "Error.cpp",

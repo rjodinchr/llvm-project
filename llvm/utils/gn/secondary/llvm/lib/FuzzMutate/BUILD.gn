@@ -1,14 +1,16 @@
-static_library("FuzzMutate") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("FuzzMutate") {
   output_name = "LLVMFuzzMutate"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
   ]
   sources = [
     "FuzzerCLI.cpp",

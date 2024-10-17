@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("RISCVGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -49,16 +51,16 @@ group("tablegen") {
   ]
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMRISCVDesc"
   public_deps = [ ":tablegen" ]
   deps = [
     ":RISCVGenAsmWriter",
     ":RISCVGenMCCodeEmitter",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/RISCV:RISCVGenCompressInstEmitter",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/RISCV:RISCVGenCompressInstEmitter",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

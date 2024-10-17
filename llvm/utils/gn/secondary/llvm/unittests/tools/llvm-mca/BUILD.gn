@@ -1,13 +1,15 @@
-import("//llvm/lib/Target/targets.gni")
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("LLVMMCATests") {
   deps = [
-    "//llvm/lib/MC",
-    "//llvm/lib/MCA",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MCA",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   if (llvm_build_X86) {
     deps += [ "X86" ]
@@ -18,7 +20,7 @@ unittest("LLVMMCATests") {
   # FIXME: Why is this so complicated in the cmake file?
   mca_views_sources = [ "SummaryView.cpp" ]
   foreach(s, mca_views_sources) {
-    sources += [ "//llvm/tools/llvm-mca/Views/" + s ]
+    sources += [ "${llvm_root_dir}llvm/tools/llvm-mca/Views/" + s ]
   }
-  include_dirs = [ "//llvm/tools/llvm-mca" ]
+  include_dirs = [ "${llvm_root_dir}llvm/tools/llvm-mca" ]
 }

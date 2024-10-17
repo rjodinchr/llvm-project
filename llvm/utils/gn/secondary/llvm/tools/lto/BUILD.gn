@@ -1,22 +1,24 @@
-import("//llvm/utils/gn/build/symbol_exports.gni")
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/symbol_exports.gni")
+import("${llvm_root_dir}llvm/version.gni")
 
 symbol_exports("exports") {
   exports_file = "lto.exports"
 }
 
-shared_library("lto") {
+llvm_shared_library("lto") {
   output_name = "LTO"
   deps = [
     ":exports",
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/IR",
-    "//llvm/lib/LTO",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/LTO",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
   ]
   sources = [
     "LTODisassembler.cpp",

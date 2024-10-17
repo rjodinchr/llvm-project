@@ -1,11 +1,13 @@
-static_library("Vectorize") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Vectorize") {
   output_name = "LLVMVectorize"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IR",
-    "//llvm/lib/SandboxIR",
-    "//llvm/lib/Support",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/SandboxIR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [
     "LoadStoreVectorizer.cpp",

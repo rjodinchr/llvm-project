@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/write_vcsrevision.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/write_vcsrevision.gni")
 
 # Configure the VCSVersion.inc file
 config("write_vcsrevision_config") {
@@ -14,13 +16,13 @@ write_vcsrevision("write_vcsversion") {
   public_configs = [ ":write_vcsrevision_config" ]
 }
 
-static_library("Utils") {
+llvm_static_library("Utils") {
   output_name = "LLVMBOLTUtils"
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
     ":write_vcsversion",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/pthread",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/pthread",
   ]
   sources = [
     "CommandLineOpts.cpp",

@@ -1,13 +1,15 @@
-static_library("Placeholder") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Placeholder") {
   output_name = "lldbPluginObjectFilePlaceholder"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Host",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "ObjectFilePlaceholder.cpp" ]
 }

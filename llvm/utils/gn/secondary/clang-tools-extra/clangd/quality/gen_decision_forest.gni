@@ -1,3 +1,5 @@
+import("//build_overrides/llvm.gni")
+
 template("gen_decision_forest") {
   model = invoker.model
   filename = invoker.filename
@@ -9,7 +11,7 @@ template("gen_decision_forest") {
   }
 
   action("${target_name}Cpp") {
-    script = "//clang-tools-extra/clangd/quality/CompletionModelCodegen.py"
+    script = "${llvm_root_dir}clang-tools-extra/clangd/quality/CompletionModelCodegen.py"
     outputs = [
       "$target_gen_dir/$filename.cpp",
       "$target_gen_dir/$filename.h",
@@ -36,7 +38,7 @@ template("gen_decision_forest") {
 
   source_set(target_name) {
     configs += [
-      "//llvm/utils/gn/build:clang_code",
+      "${llvm_root_dir}llvm/utils/gn/build:clang_code",
       ":${target_name}Config",
     ]
     deps = [ ":${target_name}Cpp" ] + extra_deps

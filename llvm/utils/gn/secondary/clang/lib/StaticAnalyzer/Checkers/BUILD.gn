@@ -1,16 +1,18 @@
-static_library("Checkers") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Checkers") {
   output_name = "clangStaticAnalyzerCheckers"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/include/clang/StaticAnalyzer/Checkers",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/StaticAnalyzer/Core",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}clang/include/clang/StaticAnalyzer/Checkers",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/StaticAnalyzer/Core",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ "." ]
   sources = [

@@ -1,4 +1,6 @@
-executable("clang-tidy-confusable-chars-gen") {
-  deps = [ "//llvm/lib/Support" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-tidy-confusable-chars-gen") {
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [ "BuildConfusableTable.cpp" ]
 }

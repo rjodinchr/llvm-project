@@ -1,13 +1,15 @@
-executable("llvm-cov") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-cov") {
   deps = [
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Debuginfod",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/ProfileData",
-    "//llvm/lib/ProfileData/Coverage",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Debuginfod",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/ProfileData",
+    "${llvm_root_dir}llvm/lib/ProfileData/Coverage",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "CodeCoverage.cpp",

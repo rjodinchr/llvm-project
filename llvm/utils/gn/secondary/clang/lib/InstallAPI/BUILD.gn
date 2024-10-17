@@ -1,11 +1,13 @@
-static_library("InstallAPI") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("InstallAPI") {
   output_name = "clangInstallAPI"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//llvm/lib/Demangle",
-    "//llvm/lib/Support",
-    "//llvm/lib/TextAPI",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TextAPI",
   ]
   sources = [
     "DiagnosticBuilderWrappers.cpp",

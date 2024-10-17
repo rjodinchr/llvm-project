@@ -1,6 +1,8 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("TargetMachineCTests") {
-  deps = [ "//llvm/lib/Target:AllTargetsCodeGens" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Target:AllTargetsCodeGens" ]
   sources = [ "TargetMachineOptionsTest.cpp" ]
 }

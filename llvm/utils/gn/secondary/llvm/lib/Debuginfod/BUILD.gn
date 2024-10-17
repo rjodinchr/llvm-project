@@ -1,9 +1,11 @@
-static_library("Debuginfod") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Debuginfod") {
   output_name = "LLVMDebuginfod"
   deps = [
-    "//llvm/lib/DebugInfo/Symbolize",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/curl",
+    "${llvm_root_dir}llvm/lib/DebugInfo/Symbolize",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/curl",
   ]
   sources = [
     "BuildIDFetcher.cpp",

@@ -1,9 +1,11 @@
-import("//compiler-rt/target.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}compiler-rt/target.gni")
 
 template("gen_version_script") {
   if (current_os != "mac" && current_os != "win") {
     action(target_name) {
-      script = "//compiler-rt/lib/sanitizer_common/scripts/gen_dynamic_list.py"
+      script = "${llvm_root_dir}compiler-rt/lib/sanitizer_common/scripts/gen_dynamic_list.py"
       sources = [ invoker.extra ]
       deps = invoker.libs
       outputs = [ invoker.output ]

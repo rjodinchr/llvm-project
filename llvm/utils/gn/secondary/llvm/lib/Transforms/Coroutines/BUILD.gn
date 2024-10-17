@@ -1,13 +1,15 @@
-static_library("Coroutines") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Coroutines") {
   output_name = "LLVMCoroutines"
   deps = [
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
-    "//llvm/lib/Transforms/IPO",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   sources = [
     "CoroAnnotationElide.cpp",

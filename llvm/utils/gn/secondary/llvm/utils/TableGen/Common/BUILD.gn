@@ -1,9 +1,11 @@
-static_library("Common") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Common") {
   deps = [
-    "//llvm/include/llvm/CodeGen:GenVT",
-    "//llvm/lib/CodeGenTypes",
-    "//llvm/lib/Support",
-    "//llvm/lib/TableGen",
+    "${llvm_root_dir}llvm/include/llvm/CodeGen:GenVT",
+    "${llvm_root_dir}llvm/lib/CodeGenTypes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TableGen",
   ]
   include_dirs = [ ".." ]
   sources = [

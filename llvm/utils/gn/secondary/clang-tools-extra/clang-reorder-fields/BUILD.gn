@@ -1,15 +1,17 @@
-static_library("clang-reorder-fields") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("clang-reorder-fields") {
   output_name = "clangReorderFields"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Index",
-    "//clang/lib/Lex",
-    "//clang/lib/Serialization",
-    "//clang/lib/Tooling/Core",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Index",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ReorderFieldsAction.cpp" ]
 }

@@ -1,9 +1,11 @@
-executable("lli-child-target") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("lli-child-target") {
   deps = [
-    "//llvm/lib/ExecutionEngine/Orc",
-    "//llvm/lib/ExecutionEngine/Orc/Shared",
-    "//llvm/lib/ExecutionEngine/RuntimeDyld",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc/Shared",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/RuntimeDyld",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ChildTarget.cpp" ]
 }

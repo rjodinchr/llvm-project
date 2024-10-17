@@ -1,5 +1,7 @@
-executable("clang-fuzzer-dictionary") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-fuzzer-dictionary") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   sources = [ "dictionary.c" ]
-  deps = [ "//clang/lib/Basic" ]
+  deps = [ "${llvm_root_dir}clang/lib/Basic" ]
 }

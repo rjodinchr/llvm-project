@@ -1,7 +1,9 @@
-import("//llvm/utils/gn/build/driver_executable.gni")
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/driver_executable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
+import("${llvm_root_dir}llvm/version.gni")
 
 symlinks = [
   # target_name, symlink_target pairs: GN doesn't support '+' in rule names.
@@ -48,38 +50,38 @@ if (host_os == "mac") {
 }
 
 driver_executable("clang") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/include/clang/Config",
-    "//clang/lib/Basic",
-    "//clang/lib/CodeGen",
-    "//clang/lib/Driver",
-    "//clang/lib/Frontend",
-    "//clang/lib/FrontendTool",
-    "//clang/lib/Headers",
-    "//clang/tools/clang-linker-wrapper",
-    "//clang/tools/clang-nvlink-wrapper",
-    "//clang/tools/clang-offload-bundler",
-    "//clang/tools/clang-offload-packager",
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/IPO",
-    "//llvm/lib/Transforms/InstCombine",
-    "//llvm/lib/Transforms/Instrumentation",
-    "//llvm/lib/Transforms/ObjCARC",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
-    "//llvm/lib/Transforms/Vectorize",
+    "${llvm_root_dir}clang/include/clang/Config",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/CodeGen",
+    "${llvm_root_dir}clang/lib/Driver",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/FrontendTool",
+    "${llvm_root_dir}clang/lib/Headers",
+    "${llvm_root_dir}clang/tools/clang-linker-wrapper",
+    "${llvm_root_dir}clang/tools/clang-nvlink-wrapper",
+    "${llvm_root_dir}clang/tools/clang-offload-bundler",
+    "${llvm_root_dir}clang/tools/clang-offload-packager",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Transforms/InstCombine",
+    "${llvm_root_dir}llvm/lib/Transforms/Instrumentation",
+    "${llvm_root_dir}llvm/lib/Transforms/ObjCARC",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Transforms/Vectorize",
   ]
-  assert_no_deps = [ "//llvm/lib/Debuginfod" ]
+  assert_no_deps = [ "${llvm_root_dir}llvm/lib/Debuginfod" ]
   if (host_os == "mac") {
     deps += [ ":write_info_plist" ]
     plist = get_target_outputs(":write_info_plist")
@@ -91,7 +93,7 @@ driver_executable("clang") {
     # clang.  This is different from the CMake build, which requires devs to
     # explicitly build the "libcxx" target (which also needlessly compiles the
     # libcxx sources) to get a working compiler.
-    deps += [ "//libcxx/include:copy_headers" ]
+    deps += [ "${llvm_root_dir}libcxx/include:copy_headers" ]
   }
   sources = [
     "cc1_main.cpp",

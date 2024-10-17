@@ -1,16 +1,18 @@
-executable("clang-change-namespace") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-change-namespace") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-change-namespace",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Frontend",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Serialization",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang-tools-extra/clang-change-namespace",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
   ]
   include_dirs = [ ".." ]
   sources = [ "ClangChangeNamespace.cpp" ]

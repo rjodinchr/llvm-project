@@ -1,13 +1,15 @@
-static_library("Analysis") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Analysis") {
   output_name = "clangAnalysis"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/include/clang/AST:StmtDataCollectors",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/include/clang/AST:StmtDataCollectors",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "AnalysisDeclContext.cpp",

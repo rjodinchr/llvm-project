@@ -1,9 +1,11 @@
-static_library("None") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("None") {
   output_name = "lldbPluginScriptInterpreterNone"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Interpreter",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Interpreter",
   ]
   sources = [ "ScriptInterpreterNone.cpp" ]
 }

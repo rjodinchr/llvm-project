@@ -1,27 +1,29 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("Opts") {
   visibility = [ ":llvm-tli-checker" ]
   args = [ "-gen-opt-parser-defs" ]
 }
 
-executable("llvm-tli-checker") {
+llvm_executable("llvm-tli-checker") {
   deps = [
     ":Opts",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/Bitstream/Reader",
-    "//llvm/lib/Demangle",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Remarks",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/TextAPI",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/Bitstream/Reader",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Remarks",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/TextAPI",
   ]
   sources = [ "llvm-tli-checker.cpp" ]
 }

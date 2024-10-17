@@ -1,11 +1,13 @@
-static_library("AArch64") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("AArch64") {
   output_name = "LLVMBOLTTargetAArch64"
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
-    "//bolt/lib/Core",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/AArch64/MCTargetDesc",
+    "${llvm_root_dir}bolt/lib/Core",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/AArch64/MCTargetDesc",
   ]
   sources = [ "AArch64MCPlusBuilder.cpp" ]
 
@@ -14,6 +16,6 @@ static_library("AArch64") {
   # tblgen-generated headers used only in internal headers (...which this
   # target here questionably includes). So depend on the target that generates
   # those headers here.
-  include_dirs = [ "//llvm/lib/Target/AArch64" ]
-  deps += [ "//llvm/lib/Target/AArch64/Utils" ]
+  include_dirs = [ "${llvm_root_dir}llvm/lib/Target/AArch64" ]
+  deps += [ "${llvm_root_dir}llvm/lib/Target/AArch64/Utils" ]
 }

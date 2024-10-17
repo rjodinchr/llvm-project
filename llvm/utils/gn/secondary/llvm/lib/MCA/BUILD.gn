@@ -1,9 +1,11 @@
-static_library("MCA") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MCA") {
   output_name = "LLVMMCA"
   deps = [
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [ "../include" ]
   sources = [

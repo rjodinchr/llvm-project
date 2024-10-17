@@ -1,5 +1,7 @@
-import("//libcxx/config.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}libcxx/config.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
 
 libcxx_generated_include_dir = "$root_build_dir/include/c++/v1"
 
@@ -64,7 +66,7 @@ if (current_toolchain == default_toolchain) {
   # copy() uses `sources`, and if there's more than one `sources` in a file,
   # sync_source_lists_from_cmake.py can't auto-sync changes.
   write_cmake_config("write_assertion_handler") {
-    input = "//libcxx/vendor/llvm/default_assertion_handler.in"
+    input = "${llvm_root_dir}libcxx/vendor/llvm/default_assertion_handler.in"
     output = "$libcxx_generated_include_dir/__assertion_handler"
     values = []
   }
@@ -1111,7 +1113,7 @@ if (current_toolchain == default_toolchain) {
       # On macOS, libcxx/CMakeLists.txt sets LIBCXX_CXX_ABI_SYSTEM to 1, which
       # causes an empty header list to be passed to setup_abi_lib, so these
       # don't get copied on macOS due to that.
-      deps += [ "//libcxxabi/include" ]
+      deps += [ "${llvm_root_dir}libcxxabi/include" ]
     }
     outputs = [ "$root_build_dir/include/c++/v1/{{source_target_relative}}" ]
   }

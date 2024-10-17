@@ -1,16 +1,18 @@
-static_library("LLVMC") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("LLVMC") {
   output_name = "lldbPluginDisassemblerLLVMC"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//llvm/lib/ExecutionEngine/RuntimeDyld",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/RuntimeDyld",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "DisassemblerLLVMC.cpp" ]
 }

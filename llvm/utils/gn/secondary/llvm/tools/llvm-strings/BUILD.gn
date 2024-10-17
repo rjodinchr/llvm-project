@@ -1,6 +1,8 @@
-import("//llvm/tools/binutils_symlinks.gni")
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/tools/binutils_symlinks.gni")
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
 
 tablegen("Opts") {
   visibility = [ ":llvm-strings" ]
@@ -23,13 +25,13 @@ group("symlinks") {
   }
 }
 
-executable("llvm-strings") {
+llvm_executable("llvm-strings") {
   deps = [
     ":Opts",
-    "//llvm/lib/IR",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-strings.cpp" ]
 }

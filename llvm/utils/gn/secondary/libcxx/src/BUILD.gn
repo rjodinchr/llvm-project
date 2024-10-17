@@ -1,6 +1,8 @@
-import("//clang/runtimes.gni")
-import("//libcxx/config.gni")
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/runtimes.gni")
+import("${llvm_root_dir}libcxx/config.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
 
 declare_args() {
   # Build libc++ with definitions for operator new/delete.
@@ -35,7 +37,7 @@ declare_args() {
 }
 
 config("cxx_config") {
-  include_dirs = [ "//libcxxabi/include" ]
+  include_dirs = [ "${llvm_root_dir}libcxxabi/include" ]
   cflags = [
     "-Wall",
     "-Wextra",
@@ -229,7 +231,7 @@ if (false) {
 }
 
 if (libcxx_enable_shared) {
-  shared_library("cxx_shared") {
+  llvm_shared_library("cxx_shared") {
     output_dir = runtimes_dir
     output_name = "c++"
     if (libcxx_enable_abi_linker_script) {
@@ -246,15 +248,15 @@ if (libcxx_enable_shared) {
     sources = cxx_sources
     include_dirs = [ "." ]
     deps = [
-      "//compiler-rt/lib/builtins",
-      "//libcxx/include",
-      "//libcxxabi/src:cxxabi_shared",
-      "//libunwind/src:unwind_shared",
+      "${llvm_root_dir}compiler-rt/lib/builtins",
+      "${llvm_root_dir}libcxx/include",
+      "${llvm_root_dir}libcxxabi/src:cxxabi_shared",
+      "${llvm_root_dir}libunwind/src:unwind_shared",
     ]
     configs += [ ":cxx_config" ]
     configs -= [
-      "//llvm/utils/gn/build:no_exceptions",
-      "//llvm/utils/gn/build:no_rtti",
+      "${llvm_root_dir}llvm/utils/gn/build:no_exceptions",
+      "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
     ]
   }
 
@@ -266,7 +268,7 @@ if (libcxx_enable_shared) {
 
   if (libcxx_enable_abi_linker_script) {
     action("cxx_linker_script") {
-      script = "//llvm/utils/gn/secondary/libcxx/utils/gen_link_script.py"
+      script = "${llvm_root_dir}llvm/utils/gn/secondary/libcxx/utils/gen_link_script.py"
       outputs = [ "$runtimes_dir/libc++.so" ]
       args = [
         "--input",
@@ -282,11 +284,11 @@ if (libcxx_enable_shared) {
 }
 
 if (libcxx_enable_static) {
-  static_library("cxx_static") {
+  llvm_static_library("cxx_static") {
     output_dir = runtimes_dir
     output_name = "c++"
     complete_static_lib = true
-    configs -= [ "//llvm/utils/gn/build:thin_archive" ]
+    configs -= [ "${llvm_root_dir}llvm/utils/gn/build:thin_archive" ]
     sources = cxx_sources
     include_dirs = [ "." ]
     if (libcxx_hermetic_static_library) {
@@ -297,21 +299,21 @@ if (libcxx_enable_static) {
       defines = [ "_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS" ]
     }
     deps = [
-      "//compiler-rt/lib/builtins",
-      "//libcxx/include",
-      "//libcxxabi/src:cxxabi_static",
-      "//libunwind/src:unwind_static",
+      "${llvm_root_dir}compiler-rt/lib/builtins",
+      "${llvm_root_dir}libcxx/include",
+      "${llvm_root_dir}libcxxabi/src:cxxabi_static",
+      "${llvm_root_dir}libunwind/src:unwind_static",
     ]
     configs += [ ":cxx_config" ]
     configs -= [
-      "//llvm/utils/gn/build:no_exceptions",
-      "//llvm/utils/gn/build:no_rtti",
+      "${llvm_root_dir}llvm/utils/gn/build:no_exceptions",
+      "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
     ]
   }
 }
 
 if (libcxx_enable_experimental) {
-  static_library("cxx_experimental") {
+  llvm_static_library("cxx_experimental") {
     output_dir = runtimes_dir
     output_name = "c++experimental"
     sources = [ "experimental/keep.cpp" ]
@@ -329,11 +331,11 @@ if (libcxx_enable_experimental) {
         "experimental/tzdb_list.cpp",
       ]
     }
-    deps = [ "//libcxx/include" ]
+    deps = [ "${llvm_root_dir}libcxx/include" ]
     configs += [ ":cxx_config" ]
     configs -= [
-      "//llvm/utils/gn/build:no_exceptions",
-      "//llvm/utils/gn/build:no_rtti",
+      "${llvm_root_dir}llvm/utils/gn/build:no_exceptions",
+      "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
     ]
   }
 }

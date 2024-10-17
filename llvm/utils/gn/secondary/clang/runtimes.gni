@@ -1,5 +1,7 @@
-import("//clang/resource_dir.gni")
-import("//llvm/triples.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/resource_dir.gni")
+import("${llvm_root_dir}llvm/triples.gni")
 
 declare_args() {
   # Use target triple as the name of the runtimes directory.

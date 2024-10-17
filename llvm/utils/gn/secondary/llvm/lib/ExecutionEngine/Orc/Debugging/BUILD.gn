@@ -1,11 +1,13 @@
-static_library("Debugging") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Debugging") {
   output_name = "LLVMOrcDebugging"
   deps = [
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/ExecutionEngine/Orc",
-    "//llvm/lib/ExecutionEngine/Orc/Shared",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc/Shared",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "DebugInfoSupport.cpp",

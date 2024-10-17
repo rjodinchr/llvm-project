@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/compiled_action.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/compiled_action.gni")
 
 compiled_action("Confusables.inc") {
   tool = "ConfusableTable:clang-tidy-confusable-chars-gen"
@@ -10,26 +12,26 @@ compiled_action("Confusables.inc") {
   ]
 }
 
-static_library("misc") {
+llvm_static_library("misc") {
   output_name = "clangTidyMiscModule"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   include_dirs = [
     target_gen_dir,
-    "//clang-tools-extra/include-cleaner/include",
+    "${llvm_root_dir}clang-tools-extra/include-cleaner/include",
   ]
   deps = [
     ":Confusables.inc",
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/clang-tidy/utils",
-    "//clang-tools-extra/include-cleaner/lib",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/Serialization",
-    "//clang/lib/Tooling",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/utils",
+    "${llvm_root_dir}clang-tools-extra/include-cleaner/lib",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "ConfusableIdentifierCheck.cpp",

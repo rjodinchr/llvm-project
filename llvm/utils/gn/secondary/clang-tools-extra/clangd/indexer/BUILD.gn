@@ -1,20 +1,22 @@
-executable("clangd-indexer") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clangd-indexer") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clangd",
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Index",
-    "//clang/lib/Lex",
-    "//clang/lib/Tooling",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clangd",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Index",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [
     "..",
 
     # For "clang-include-cleaner/..." includes.
-    "//clang-tools-extra/include-cleaner/include",
+    "${llvm_root_dir}clang-tools-extra/include-cleaner/include",
   ]
   sources = [ "IndexerMain.cpp" ]
 }

@@ -1,6 +1,8 @@
-static_library("TargetInfo") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("TargetInfo") {
   output_name = "LLVMAArch64Info"
-  deps = [ "//llvm/lib/Support" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   include_dirs = [ ".." ]
   sources = [ "AArch64TargetInfo.cpp" ]
 }

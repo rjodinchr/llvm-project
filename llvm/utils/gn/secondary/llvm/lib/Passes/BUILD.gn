@@ -1,23 +1,25 @@
-static_library("Passes") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Passes") {
   output_name = "LLVMPasses"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRPrinter",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Transforms/AggressiveInstCombine",
-    "//llvm/lib/Transforms/CFGuard",
-    "//llvm/lib/Transforms/Coroutines",
-    "//llvm/lib/Transforms/HipStdPar",
-    "//llvm/lib/Transforms/IPO",
-    "//llvm/lib/Transforms/InstCombine",
-    "//llvm/lib/Transforms/Instrumentation",
-    "//llvm/lib/Transforms/ObjCARC",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
-    "//llvm/lib/Transforms/Vectorize",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRPrinter",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Transforms/AggressiveInstCombine",
+    "${llvm_root_dir}llvm/lib/Transforms/CFGuard",
+    "${llvm_root_dir}llvm/lib/Transforms/Coroutines",
+    "${llvm_root_dir}llvm/lib/Transforms/HipStdPar",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Transforms/InstCombine",
+    "${llvm_root_dir}llvm/lib/Transforms/Instrumentation",
+    "${llvm_root_dir}llvm/lib/Transforms/ObjCARC",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Transforms/Vectorize",
   ]
   sources = [
     "CodeGenPassBuilder.cpp",

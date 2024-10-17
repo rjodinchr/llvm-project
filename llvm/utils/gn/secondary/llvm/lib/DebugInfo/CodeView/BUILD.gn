@@ -1,8 +1,10 @@
-static_library("CodeView") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("CodeView") {
   output_name = "LLVMDebugInfoCodeView"
   deps = [
-    "//llvm/lib/DebugInfo/MSF",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/DebugInfo/MSF",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "AppendingTypeTableBuilder.cpp",

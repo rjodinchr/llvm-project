@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("WebAssemblyGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -35,7 +37,7 @@ group("tablegen") {
   public_deps = [ ":WebAssemblyGenRegisterInfo" ]
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMWebAssemblyDesc"
 
   # This should contain tablegen targets generating .inc files included
@@ -48,12 +50,12 @@ static_library("MCTargetDesc") {
   deps = [
     ":WebAssemblyGenAsmWriter",
     ":WebAssemblyGenMCCodeEmitter",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/WebAssembly/TargetInfo",
-    "//llvm/lib/Target/WebAssembly/Utils",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/WebAssembly/TargetInfo",
+    "${llvm_root_dir}llvm/lib/Target/WebAssembly/Utils",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [

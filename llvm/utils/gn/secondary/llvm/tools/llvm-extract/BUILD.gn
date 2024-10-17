@@ -1,11 +1,13 @@
-executable("llvm-extract") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-extract") {
   deps = [
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/Passes",
-    "//llvm/lib/Support",
-    "//llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/Passes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
   ]
   sources = [ "llvm-extract.cpp" ]
 }

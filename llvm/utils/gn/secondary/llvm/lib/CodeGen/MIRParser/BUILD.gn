@@ -1,13 +1,15 @@
-static_library("MIRParser") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MIRParser") {
   output_name = "LLVMMIRParser"
   deps = [
-    "//llvm/lib/AsmParser",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/AsmParser",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
   ]
   sources = [
     "MILexer.cpp",

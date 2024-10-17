@@ -1,18 +1,20 @@
-executable("clang-format") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-format") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Tooling/Core",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   assert_no_deps = [
-    "//clang/lib/AST/",
-    "//clang/lib/Frontend/",
-    "//clang/lib/Sema/",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
+    "${llvm_root_dir}clang/lib/AST/",
+    "${llvm_root_dir}clang/lib/Frontend/",
+    "${llvm_root_dir}clang/lib/Sema/",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
   ]
   sources = [ "ClangFormat.cpp" ]
 }

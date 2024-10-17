@@ -1,3 +1,5 @@
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/version.gni")
 
 clang_resource_dir = "$root_build_dir/lib/clang/$llvm_version_major"

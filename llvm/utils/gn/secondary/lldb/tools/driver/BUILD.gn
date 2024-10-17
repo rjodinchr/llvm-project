@@ -1,8 +1,10 @@
-import("//llvm/lib/Target/targets.gni")
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/toolchain/compiler.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/toolchain/compiler.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
+import("${llvm_root_dir}llvm/version.gni")
 
 tablegen("Options") {
   visibility = [ ":lldb" ]
@@ -19,15 +21,15 @@ if (current_os == "mac") {
 
 supported_toolchains = supported_android_toolchains
 
-executable("lldb") {
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+llvm_executable("lldb") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
     ":Options",
-    "//lldb/include/lldb/Host:Config",
-    "//lldb/source/API:liblldb",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/xar",
+    "${llvm_root_dir}lldb/include/lldb/Host:Config",
+    "${llvm_root_dir}lldb/source/API:liblldb",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/xar",
   ]
   if (current_os == "mac") {
     deps += [ ":write_info_plist" ]
@@ -36,10 +38,10 @@ executable("lldb") {
                 rebase_path(plist[0], root_out_dir) ]
   }
   if (current_os == "linux") {
-    deps += [ "//lldb/tools/lldb-server" ]
+    deps += [ "${llvm_root_dir}lldb/tools/lldb-server" ]
   }
   foreach(toolchain, supported_toolchains) {
-    deps += [ "//lldb/tools/lldb-server($toolchain)" ]
+    deps += [ "${llvm_root_dir}lldb/tools/lldb-server($toolchain)" ]
   }
 
   sources = [

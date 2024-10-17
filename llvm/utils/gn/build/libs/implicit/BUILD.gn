@@ -1,10 +1,12 @@
+import("//build_overrides/llvm.gni")
+
 # This target represents the library dependencies that are implicitly linked by
 # the compiler.
 if (current_os == "android") {
   group("implicit") {
     deps = [
-      "//compiler-rt/lib/builtins",
-      "//libunwind/src:unwind_static",
+      "${llvm_root_dir}compiler-rt/lib/builtins",
+      "${llvm_root_dir}libunwind/src:unwind_static",
     ]
   }
 }

@@ -1,4 +1,6 @@
-import("//clang/lib/StaticAnalyzer/Frontend/enable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/lib/StaticAnalyzer/Frontend/enable.gni")
 
 group("unittests") {
   deps = [

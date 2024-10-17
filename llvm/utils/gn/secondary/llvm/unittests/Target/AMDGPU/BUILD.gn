@@ -1,20 +1,22 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("AMDGPUTests") {
   deps = [
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
 
     # AMDGPUBaseInfo.cpp includes GCNSubtarget.h which after 490e348e679
     # includes the generated AMDGPUGenRegisterBank.inc file :/
-    "//llvm/lib/Target/AMDGPU:LLVMAMDGPUCodeGen",
-    "//llvm/lib/Target/AMDGPU/:AMDGPUGenRegisterBank",
-    "//llvm/lib/Target/AMDGPU/MCTargetDesc",
-    "//llvm/lib/Target/AMDGPU/TargetInfo",
-    "//llvm/lib/Target/AMDGPU/Utils",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU:LLVMAMDGPUCodeGen",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/:AMDGPUGenRegisterBank",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/TargetInfo",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/Utils",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
-  include_dirs = [ "//llvm/lib/Target/AMDGPU" ]
+  include_dirs = [ "${llvm_root_dir}llvm/lib/Target/AMDGPU" ]
   sources = [
     "AMDGPUUnitTests.cpp",
     "DwarfRegMappings.cpp",

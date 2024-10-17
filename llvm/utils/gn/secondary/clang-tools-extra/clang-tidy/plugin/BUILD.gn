@@ -1,15 +1,17 @@
-static_library("plugin") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("plugin") {
   output_name = "clangTidyPlugin"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/clang-tidy:all-checks",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Sema",
-    "//clang/lib/Tooling",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy:all-checks",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Sema",
+    "${llvm_root_dir}clang/lib/Tooling",
   ]
 
   sources = [ "ClangTidyPlugin.cpp" ]

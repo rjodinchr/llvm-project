@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("LanaiGenCallingConv") {
   visibility = [ ":LLVMLanaiCodeGen" ]
@@ -12,22 +14,22 @@ tablegen("LanaiGenDAGISel") {
   td_file = "Lanai.td"
 }
 
-static_library("LLVMLanaiCodeGen") {
+llvm_static_library("LLVMLanaiCodeGen") {
   deps = [
     ":LanaiGenCallingConv",
     ":LanaiGenDAGISel",
     "MCTargetDesc",
     "TargetInfo",
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Analysis",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/CodeGen/AsmPrinter",
-    "//llvm/lib/CodeGen/SelectionDAG",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/CodeGen/AsmPrinter",
+    "${llvm_root_dir}llvm/lib/CodeGen/SelectionDAG",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ "." ]
   sources = [
@@ -49,9 +51,9 @@ static_library("LLVMLanaiCodeGen") {
 }
 
 # This is a bit different from most build files: Due to this group
-# having the directory's name, "//llvm/lib/Target/Lanai" will refer to this
+# having the directory's name, "${llvm_root_dir}llvm/lib/Target/Lanai" will refer to this
 # target, which pulls in the code in this directory *and all subdirectories*.
-# For most other directories, "//llvm/lib/Foo" only pulls in the code directly
+# For most other directories, "${llvm_root_dir}llvm/lib/Foo" only pulls in the code directly
 # in "llvm/lib/Foo". The forwarding targets in //llvm/lib/Target expect this
 # different behavior.
 group("Lanai") {

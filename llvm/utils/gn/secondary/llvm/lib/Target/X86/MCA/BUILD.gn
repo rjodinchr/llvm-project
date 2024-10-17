@@ -1,14 +1,16 @@
-static_library("MCA") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MCA") {
   output_name = "LLVMTargetX86MCA"
   deps = [
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/MCA",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/X86/MCTargetDesc",
-    "//llvm/lib/Target/X86/TargetInfo",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/MCA",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/X86/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/X86/TargetInfo",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ ".." ]
   sources = [ "X86CustomBehaviour.cpp" ]

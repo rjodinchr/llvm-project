@@ -1,11 +1,13 @@
-static_library("Dynamic") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Dynamic") {
   output_name = "clangDynamicASTMatchers"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "Diagnostics.cpp",

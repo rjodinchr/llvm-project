@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("AArch64GenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,16 +8,16 @@ tablegen("AArch64GenDisassemblerTables") {
   td_file = "../AArch64.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMAArch64Disassembler"
   deps = [
     ":AArch64GenDisassemblerTables",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/AArch64/MCTargetDesc",
-    "//llvm/lib/Target/AArch64/TargetInfo",
-    "//llvm/lib/Target/AArch64/Utils",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/AArch64/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/AArch64/TargetInfo",
+    "${llvm_root_dir}llvm/lib/Target/AArch64/Utils",
   ]
   include_dirs = [ ".." ]
   sources = [

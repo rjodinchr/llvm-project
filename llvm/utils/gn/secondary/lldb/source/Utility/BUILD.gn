@@ -1,10 +1,12 @@
-static_library("Utility") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Utility") {
   output_name = "lldbUtility"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "AddressableBits.cpp",

@@ -1,26 +1,28 @@
-static_library("Clang") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Clang") {
   output_name = "lldbPluginTypeSystemClang"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Sema",
-    "//lldb/source/Core",
-    "//lldb/source/Plugins/ExpressionParser/Clang",
-    "//lldb/source/Plugins/LanguageRuntime/ObjC",
-    "//lldb/source/Plugins/SymbolFile/DWARF",
-    "//lldb/source/Plugins/SymbolFile/PDB",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Sema",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Plugins/ExpressionParser/Clang",
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/ObjC",
+    "${llvm_root_dir}lldb/source/Plugins/SymbolFile/DWARF",
+    "${llvm_root_dir}lldb/source/Plugins/SymbolFile/PDB",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Reaches into Plugins/ExpressionParser/Clang.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [ "TypeSystemClang.cpp" ]
 }

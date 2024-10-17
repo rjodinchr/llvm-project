@@ -1,4 +1,6 @@
-source_set("llvm-min-tblgen-sources") {
+import("//build_overrides/llvm.gni")
+
+llvm_source_set("llvm-min-tblgen-sources") {
   sources = [
     "ARMTargetDefEmitter.cpp",
     "Attributes.cpp",
@@ -10,26 +12,26 @@ source_set("llvm-min-tblgen-sources") {
   ]
   deps = [
     "Basic",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 }
 
-executable("llvm-min-tblgen") {
+llvm_executable("llvm-min-tblgen") {
   deps = [
     ":llvm-min-tblgen-sources",
     "Basic",
   ]
 }
 
-executable("llvm-tblgen") {
+llvm_executable("llvm-tblgen") {
   deps = [
     ":llvm-min-tblgen-sources",
     "Basic",
     "Common",
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/CodeGenTypes",
-    "//llvm/lib/Support",
-    "//llvm/lib/TableGen",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/CodeGenTypes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TableGen",
   ]
   include_dirs = [ "." ]
   sources = [

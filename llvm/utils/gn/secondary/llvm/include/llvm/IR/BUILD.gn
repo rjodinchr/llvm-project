@@ -1,23 +1,25 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("Attributes") {
   visibility = [ ":public_tablegen" ]
   args = [ "-gen-attrs" ]
-  tblgen_target = "//llvm/utils/TableGen:llvm-min-tblgen"
+  tblgen_target = "${llvm_root_dir}llvm/utils/TableGen:llvm-min-tblgen"
 }
 
 tablegen("IntrinsicImpl") {
-  visibility = [ "//llvm/lib/IR" ]
+  visibility = [ "${llvm_root_dir}llvm/lib/IR" ]
   args = [ "-gen-intrinsic-impl" ]
   td_file = "Intrinsics.td"
-  tblgen_target = "//llvm/utils/TableGen:llvm-min-tblgen"
+  tblgen_target = "${llvm_root_dir}llvm/utils/TableGen:llvm-min-tblgen"
 }
 
 tablegen("IntrinsicEnums") {
   visibility = [ ":public_tablegen" ]
   args = [ "-gen-intrinsic-enums" ]
   td_file = "Intrinsics.td"
-  tblgen_target = "//llvm/utils/TableGen:llvm-min-tblgen"
+  tblgen_target = "${llvm_root_dir}llvm/utils/TableGen:llvm-min-tblgen"
 }
 
 template("gen_arch_intrinsics") {
@@ -29,7 +31,7 @@ template("gen_arch_intrinsics") {
       "-intrinsic-prefix=${invoker.intrinsic_prefix}",
     ]
     td_file = "Intrinsics.td"
-    tblgen_target = "//llvm/utils/TableGen:llvm-min-tblgen"
+    tblgen_target = "${llvm_root_dir}llvm/utils/TableGen:llvm-min-tblgen"
   }
 }
 

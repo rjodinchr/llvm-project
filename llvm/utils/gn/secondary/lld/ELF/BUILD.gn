@@ -1,26 +1,28 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("Options") {
   visibility = [ ":ELF" ]
   args = [ "-gen-opt-parser-defs" ]
 }
 
-static_library("ELF") {
+llvm_static_library("ELF") {
   output_name = "lldELF"
-  configs += [ "//llvm/utils/gn/build:lld_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lld_code" ]
   deps = [
     ":Options",
-    "//lld/Common",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/IR",
-    "//llvm/lib/LTO",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}lld/Common",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/LTO",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   include_dirs = [ "." ]
   sources = [

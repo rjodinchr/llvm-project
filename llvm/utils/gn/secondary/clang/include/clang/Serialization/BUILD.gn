@@ -1,4 +1,6 @@
-import("//clang/utils/TableGen/clang_tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/utils/TableGen/clang_tablegen.gni")
 
 clang_tablegen("AttrPCHRead") {
   args = [ "-gen-clang-attr-pch-read" ]

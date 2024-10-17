@@ -1,9 +1,11 @@
-static_library("LineEditor") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("LineEditor") {
   output_name = "LLVMLineEditor"
   deps = [
-    "//llvm/include/llvm/Config:config",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/edit",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/edit",
   ]
 
   sources = [ "LineEditor.cpp" ]

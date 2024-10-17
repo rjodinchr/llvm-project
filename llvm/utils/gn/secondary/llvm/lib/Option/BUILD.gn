@@ -1,6 +1,8 @@
-static_library("Option") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Option") {
   output_name = "LLVMOption"
-  deps = [ "//llvm/lib/Support" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [
     "Arg.cpp",
     "ArgList.cpp",

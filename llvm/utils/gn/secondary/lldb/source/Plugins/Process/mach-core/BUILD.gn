@@ -1,21 +1,23 @@
-static_library("mach-core") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("mach-core") {
   output_name = "lldbPluginProcessMachCore"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Breakpoint",
-    "//lldb/source/Core",
-    "//lldb/source/Host",
-    "//lldb/source/Plugins/DynamicLoader/Darwin-Kernel",
-    "//lldb/source/Plugins/DynamicLoader/MacOSX-DYLD",
-    "//lldb/source/Plugins/ObjectFile/Mach-O",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/source/Breakpoint",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Plugins/DynamicLoader/Darwin-Kernel",
+    "${llvm_root_dir}lldb/source/Plugins/DynamicLoader/MacOSX-DYLD",
+    "${llvm_root_dir}lldb/source/Plugins/ObjectFile/Mach-O",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Reaches into Plugins/Process/Utility.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "ProcessMachCore.cpp",
     "ThreadMachCore.cpp",

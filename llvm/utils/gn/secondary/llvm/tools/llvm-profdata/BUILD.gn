@@ -1,11 +1,13 @@
-import("//llvm/utils/gn/build/driver_executable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/driver_executable.gni")
 
 driver_executable("llvm-profdata") {
   deps = [
-    "//llvm/lib/Debuginfod",
-    "//llvm/lib/IR",
-    "//llvm/lib/ProfileData",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Debuginfod",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/ProfileData",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-profdata.cpp" ]
 }

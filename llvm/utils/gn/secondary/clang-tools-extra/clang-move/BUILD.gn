@@ -1,18 +1,20 @@
-static_library("clang-move") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("clang-move") {
   output_name = "clangMove"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Frontend",
-    "//clang/lib/Lex",
-    "//clang/lib/Serialization",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/Core",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "HelperDeclRefGraph.cpp",

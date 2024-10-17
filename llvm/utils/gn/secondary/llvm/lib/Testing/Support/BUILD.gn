@@ -1,8 +1,10 @@
-static_library("Support") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Support") {
   output_name = "LLVMTestingSupport"
   deps = [
-    "//llvm/lib/Support",
-    "//third-party/unittest:gtest",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}third-party/unittest:gtest",
   ]
   sources = [
     "Error.cpp",

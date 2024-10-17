@@ -1,14 +1,16 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("ExecutionEngineTests") {
   deps = [
-    "//llvm/lib/ExecutionEngine",
-    "//llvm/lib/ExecutionEngine/Interpreter",
-    "//llvm/lib/ExecutionEngine/Orc",
-    "//llvm/lib/ExecutionEngine/RuntimeDyld",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Interpreter",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/Orc",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/RuntimeDyld",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "ExecutionEngineTest.cpp" ]
 }

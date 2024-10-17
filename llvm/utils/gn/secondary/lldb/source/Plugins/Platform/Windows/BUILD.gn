@@ -1,18 +1,20 @@
-static_library("Windows") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Windows") {
   output_name = "lldbPluginPlatformWindows"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//lldb/source/Breakpoint",
-    "//lldb/source/Core",
-    "//lldb/source/Host",
-    "//lldb/source/Plugins/Platform/gdb-server",
-    "//lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Breakpoint",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Plugins/Platform/gdb-server",
+    "${llvm_root_dir}lldb/source/Target",
   ]
 
   # Reaches into Plugins/TypeSystem/Clang.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [ "PlatformWindows.cpp" ]
 }

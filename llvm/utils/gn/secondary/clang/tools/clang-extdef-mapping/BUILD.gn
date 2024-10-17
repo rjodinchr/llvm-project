@@ -1,18 +1,20 @@
-executable("clang-extdef-mapping") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("clang-extdef-mapping") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/CrossTU",
-    "//clang/lib/Frontend",
-    "//clang/lib/Index",
-    "//clang/lib/Tooling",
-    "//llvm/lib/AsmParser",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:AllTargetsAsmParsers",
-    "//llvm/lib/Target:AllTargetsDescs",
-    "//llvm/lib/Target:AllTargetsInfos",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/CrossTU",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Index",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/AsmParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsAsmParsers",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsDescs",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsInfos",
   ]
   sources = [ "ClangExtDefMapGen.cpp" ]
 }

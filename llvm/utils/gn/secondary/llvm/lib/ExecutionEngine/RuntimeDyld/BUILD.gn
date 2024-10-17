@@ -1,11 +1,13 @@
-static_library("RuntimeDyld") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("RuntimeDyld") {
   output_name = "LLVMRuntimeDyld"
   deps = [
-    "//llvm/include/llvm/Config:config",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "JITSymbol.cpp",

@@ -1,16 +1,18 @@
-executable("c-index-test") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("c-index-test") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/include/clang/Config",
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/CodeGen",
-    "//clang/lib/Frontend",
-    "//clang/lib/Index",
-    "//clang/lib/Serialization",
-    "//clang/tools/libclang",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/xml",
+    "${llvm_root_dir}clang/include/clang/Config",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/CodeGen",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Index",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/tools/libclang",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/xml",
   ]
   if (host_os != "win") {
     cflags_c = [ "-std=gnu89" ]

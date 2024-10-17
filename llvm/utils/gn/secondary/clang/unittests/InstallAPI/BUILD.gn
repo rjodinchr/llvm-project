@@ -1,10 +1,12 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("InstallAPITests") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/InstallAPI",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}clang/lib/InstallAPI",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [
     "FileListTest.cpp",

@@ -1,13 +1,15 @@
-static_library("Default") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Default") {
   output_name = "lldbPluginSymbolLocatorDefault"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Host",
-    "//lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Symbol",
   ]
 
   # Reaches into Plugins/ObjectFile/wasm.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [ "SymbolLocatorDefault.cpp" ]
 }

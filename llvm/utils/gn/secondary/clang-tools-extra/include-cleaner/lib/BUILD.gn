@@ -1,14 +1,16 @@
-static_library("lib") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("lib") {
   output_name = "clangIncludeCleaner"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Tooling/Core",
-    "//clang/lib/Tooling/Inclusions",
-    "//clang/lib/Tooling/Inclusions/Stdlib",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang/lib/Tooling/Inclusions",
+    "${llvm_root_dir}clang/lib/Tooling/Inclusions/Stdlib",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [ "../include" ]
   sources = [

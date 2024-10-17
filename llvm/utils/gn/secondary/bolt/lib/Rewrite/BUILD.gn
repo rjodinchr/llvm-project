@@ -1,25 +1,27 @@
-import("//llvm/lib/Target/targets.gni")
+import("//build_overrides/llvm.gni")
 
-static_library("Rewrite") {
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+
+llvm_static_library("Rewrite") {
   output_name = "LLVMBOLTRewrite"
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
-    "//bolt/lib/Core",
-    "//bolt/lib/Passes",
-    "//bolt/lib/Profile",
-    "//bolt/lib/RuntimeLibs",
-    "//bolt/lib/Utils",
-    "//llvm/lib/CodeGen/AsmPrinter",
-    "//llvm/lib/DWARFLinker",
-    "//llvm/lib/DWARFLinker/Classic",
-    "//llvm/lib/DWP",
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/ExecutionEngine/JITLink",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/utils/gn/build/libs/pthread",
+    "${llvm_root_dir}bolt/lib/Core",
+    "${llvm_root_dir}bolt/lib/Passes",
+    "${llvm_root_dir}bolt/lib/Profile",
+    "${llvm_root_dir}bolt/lib/RuntimeLibs",
+    "${llvm_root_dir}bolt/lib/Utils",
+    "${llvm_root_dir}llvm/lib/CodeGen/AsmPrinter",
+    "${llvm_root_dir}llvm/lib/DWARFLinker",
+    "${llvm_root_dir}llvm/lib/DWARFLinker/Classic",
+    "${llvm_root_dir}llvm/lib/DWP",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/ExecutionEngine/JITLink",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/pthread",
   ]
   sources = [
     "BinaryPassManager.cpp",
@@ -39,10 +41,10 @@ static_library("Rewrite") {
   defines = []
   if (llvm_build_AArch64) {
     defines += [ "AARCH64_AVAILABLE" ]
-    deps += [ "//bolt/lib/Target/AArch64" ]
+    deps += [ "${llvm_root_dir}bolt/lib/Target/AArch64" ]
   }
   if (llvm_build_X86) {
     defines += [ "X86_AVAILABLE" ]
-    deps += [ "//bolt/lib/Target/X86" ]
+    deps += [ "${llvm_root_dir}bolt/lib/Target/X86" ]
   }
 }

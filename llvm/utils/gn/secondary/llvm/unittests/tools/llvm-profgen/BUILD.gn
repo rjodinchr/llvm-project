@@ -1,9 +1,11 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("LLVMProfgenTests") {
   deps = [
-    "//llvm/include/llvm/IR:public_tablegen",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}llvm/include/llvm/IR:public_tablegen",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [ "ContextCompressionTest.cpp" ]
 }

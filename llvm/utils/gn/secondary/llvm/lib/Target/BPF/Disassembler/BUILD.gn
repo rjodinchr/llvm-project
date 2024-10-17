@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("BPFGenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,14 +8,14 @@ tablegen("BPFGenDisassemblerTables") {
   td_file = "../BPF.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMBPFDisassembler"
   deps = [
     ":BPFGenDisassemblerTables",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/BPF/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/BPF/MCTargetDesc",
   ]
   include_dirs = [ ".." ]
   sources = [ "BPFDisassembler.cpp" ]

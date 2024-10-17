@@ -1,14 +1,16 @@
-static_library("MacOSX") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("MacOSX") {
   output_name = "lldbPluginSymbolVendorMacOSX"
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
   deps = [
-    "//lldb/source/Core",
-    "//lldb/source/Host",
-    "//lldb/source/Plugins/ObjectFile/Mach-O",
-    "//lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Plugins/ObjectFile/Mach-O",
+    "${llvm_root_dir}lldb/source/Symbol",
   ]
 
   # Reaches into Plugins/ObjectFile/Mach-O.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [ "SymbolVendorMacOSX.cpp" ]
 }

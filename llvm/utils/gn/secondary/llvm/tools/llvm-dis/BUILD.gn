@@ -1,8 +1,10 @@
-executable("llvm-dis") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-dis") {
   deps = [
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-dis.cpp" ]
 }

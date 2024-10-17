@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 # Generates ARMGenSystemRegister.inc
 tablegen("ARMGenSystemRegister") {
@@ -7,15 +9,15 @@ tablegen("ARMGenSystemRegister") {
   td_file = "../ARM.td"
 }
 
-static_library("Utils") {
+llvm_static_library("Utils") {
   output_name = "LLVMARMUtils"
   public_deps = [ ":ARMGenSystemRegister" ]
   deps = [
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Support",
 
     # MCTargetDesc depends on Utils, so we can't depend on the full
     # MCTargetDesc target here: it would form a cycle.
-    "//llvm/lib/Target/ARM/MCTargetDesc:tablegen",
+    "${llvm_root_dir}llvm/lib/Target/ARM/MCTargetDesc:tablegen",
   ]
 
   # ARMBaseInfo.h includes a header from MCTargetDesc,

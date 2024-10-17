@@ -1,4 +1,6 @@
-static_library("Demangle") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Demangle") {
   output_name = "LLVMDemangle"
 
   sources = [

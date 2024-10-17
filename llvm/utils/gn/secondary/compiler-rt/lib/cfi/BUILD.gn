@@ -1,8 +1,10 @@
-import("//clang/resource_dir.gni")
+import("//build_overrides/llvm.gni")
 
-source_set("sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+import("${llvm_root_dir}clang/resource_dir.gni")
+
+llvm_source_set("sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   sources = [ "cfi.cpp" ]
 }
 

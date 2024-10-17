@@ -1,7 +1,9 @@
-import("//llvm/lib/Target/targets.gni")
-import("//llvm/lib/Target/targets_with_asm_parsers.gni")
-import("//llvm/lib/Target/targets_with_disassemblers.gni")
-import("//llvm/lib/Target/targets_with_mcas.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+import("${llvm_root_dir}llvm/lib/Target/targets_with_asm_parsers.gni")
+import("${llvm_root_dir}llvm/lib/Target/targets_with_disassemblers.gni")
+import("${llvm_root_dir}llvm/lib/Target/targets_with_mcas.gni")
 
 # This build file has two parts:
 # 1. The actual //llvm/lib/Target build target, which is just a static
@@ -21,14 +23,14 @@ import("//llvm/lib/Target/targets_with_mcas.gni")
 # targets in this file, so there's no cyclic dependency.
 
 # 1. Actual build target.
-static_library("Target") {
+llvm_static_library("Target") {
   output_name = "LLVMTarget"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   public_deps = [
     # This is a bit of a hack: llvm-c/Target.h includes llvm/Config/Targets.def,
@@ -36,7 +38,7 @@ static_library("Target") {
     # declared in llvm-c/Target.h are defined in llvm/lib/Target, clients of
     # it must depend on llvm/lib/Target, so add the public_dep for Targets.def
     # here.
-    "//llvm/include/llvm/Config:write_target_def_files",
+    "${llvm_root_dir}llvm/include/llvm/Config:write_target_def_files",
   ]
   sources = [
     "Target.cpp",

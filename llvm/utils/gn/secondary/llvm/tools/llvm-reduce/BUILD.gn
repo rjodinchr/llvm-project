@@ -1,15 +1,17 @@
-executable("llvm-reduce") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-reduce") {
   deps = [
-    "//llvm/lib/CodeGen/MIRParser",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/Passes",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/IPO",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/CodeGen/MIRParser",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/Passes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/IPO",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
   include_dirs = [ "." ]
   sources = [

@@ -1,3 +1,5 @@
-executable("count") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("count") {
   sources = [ "count.c" ]
 }

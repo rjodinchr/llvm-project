@@ -1,7 +1,9 @@
-executable("FileCheck") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("FileCheck") {
   deps = [
-    "//llvm/lib/FileCheck",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/FileCheck",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "FileCheck.cpp" ]
 }

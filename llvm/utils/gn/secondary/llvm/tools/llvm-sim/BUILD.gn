@@ -1,8 +1,10 @@
-executable("llvm-sim") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-sim") {
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-sim.cpp" ]
 }

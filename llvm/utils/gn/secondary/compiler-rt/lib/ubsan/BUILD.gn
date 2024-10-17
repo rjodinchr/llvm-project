@@ -1,5 +1,7 @@
-import("//compiler-rt/gen_version_script.gni")
-import("//compiler-rt/target.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}compiler-rt/gen_version_script.gni")
+import("${llvm_root_dir}compiler-rt/target.gni")
 
 group("ubsan") {
   deps = [
@@ -24,13 +26,13 @@ gen_version_script("version_script") {
   ]
 }
 
-source_set("sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   defines = [ "UBSAN_CAN_USE_CXXABI" ]
   deps = [
-    "//compiler-rt/lib/interception:sources",
-    "//compiler-rt/lib/sanitizer_common:sources",
+    "${llvm_root_dir}compiler-rt/lib/interception:sources",
+    "${llvm_root_dir}compiler-rt/lib/sanitizer_common:sources",
   ]
   sources = [
     "ubsan_diag.cpp",
@@ -51,9 +53,9 @@ source_set("sources") {
   ]
 }
 
-source_set("runtime_thunk") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("runtime_thunk") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   sources = [ "ubsan_win_runtime_thunk.cpp" ]
   defines = [
     "SANITIZER_DYNAMIC_RUNTIME_THUNK",
@@ -61,10 +63,10 @@ source_set("runtime_thunk") {
   ]
 }
 
-source_set("standalone_sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs -= [ "//llvm/utils/gn/build:no_rtti" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("standalone_sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:no_rtti" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   defines = [ "UBSAN_CAN_USE_CXXABI" ]
   sources = [
     "ubsan_diag_standalone.cpp",
@@ -73,10 +75,10 @@ source_set("standalone_sources") {
   ]
 }
 
-source_set("cxx_sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs -= [ "//llvm/utils/gn/build:no_rtti" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("cxx_sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:no_rtti" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   defines = [ "UBSAN_CAN_USE_CXXABI" ]
   sources = [
     "ubsan_handlers_cxx.cpp",
@@ -87,7 +89,7 @@ source_set("cxx_sources") {
   ]
 }
 
-static_library("ubsan_static") {
+llvm_static_library("ubsan_static") {
   output_dir = crt_current_out_dir
   if (current_os == "mac") {
     output_name = "clang_rt.ubsan_osx"
@@ -96,11 +98,11 @@ static_library("ubsan_static") {
   }
   complete_static_lib = true
   configs -= [
-    "//llvm/utils/gn/build:llvm_code",
-    "//llvm/utils/gn/build:no_rtti",
-    "//llvm/utils/gn/build:thin_archive",
+    "${llvm_root_dir}llvm/utils/gn/build:llvm_code",
+    "${llvm_root_dir}llvm/utils/gn/build:no_rtti",
+    "${llvm_root_dir}llvm/utils/gn/build:thin_archive",
   ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   sources = [ "ubsan_init_standalone_preinit.cpp" ]
   deps = [
     ":sources",
@@ -112,28 +114,28 @@ static_library("ubsan_static") {
 }
 
 if (current_os != "mac") {
-  static_library("ubsan_static_cxx") {
+  llvm_static_library("ubsan_static_cxx") {
     output_dir = crt_current_out_dir
     output_name = "clang_rt.ubsan_standalone_cxx$crt_current_target_suffix"
     complete_static_lib = true
     configs -= [
-      "//llvm/utils/gn/build:llvm_code",
-      "//llvm/utils/gn/build:thin_archive",
+      "${llvm_root_dir}llvm/utils/gn/build:llvm_code",
+      "${llvm_root_dir}llvm/utils/gn/build:thin_archive",
     ]
-    configs += [ "//llvm/utils/gn/build:crt_code" ]
+    configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
     deps = [ ":cxx_sources" ]
   }
 }
 
-shared_library("ubsan_shared") {
+llvm_shared_library("ubsan_shared") {
   output_dir = crt_current_out_dir
   if (current_os == "mac") {
     output_name = "clang_rt.ubsan_osx_dynamic"
   } else {
     output_name = "clang_rt.ubsan_standalone$crt_current_target_suffix"
   }
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   if (current_os == "mac") {
     ldflags = [
       "-lc++",

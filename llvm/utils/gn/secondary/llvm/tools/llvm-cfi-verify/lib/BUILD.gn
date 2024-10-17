@@ -1,14 +1,16 @@
-static_library("lib") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("lib") {
   output_name = "LLVMCFIVerify"
   deps = [
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/DebugInfo/Symbolize",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/DebugInfo/Symbolize",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "FileAnalysis.cpp",

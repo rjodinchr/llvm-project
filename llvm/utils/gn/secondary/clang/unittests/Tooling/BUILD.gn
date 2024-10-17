@@ -1,29 +1,31 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("ToolingTests") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   include_dirs = [ "." ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Format",
-    "//clang/lib/Frontend",
-    "//clang/lib/Lex",
-    "//clang/lib/Rewrite",
-    "//clang/lib/Testing",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/Core",
-    "//clang/lib/Tooling/DependencyScanning",
-    "//clang/lib/Tooling/Inclusions",
-    "//clang/lib/Tooling/Inclusions/Stdlib",
-    "//clang/lib/Tooling/Refactoring",
-    "//clang/lib/Tooling/Transformer",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Testing/Annotations",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Format",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Rewrite",
+    "${llvm_root_dir}clang/lib/Testing",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang/lib/Tooling/DependencyScanning",
+    "${llvm_root_dir}clang/lib/Tooling/Inclusions",
+    "${llvm_root_dir}clang/lib/Tooling/Inclusions/Stdlib",
+    "${llvm_root_dir}clang/lib/Tooling/Refactoring",
+    "${llvm_root_dir}clang/lib/Tooling/Transformer",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Testing/Annotations",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   sources = [
     "ASTSelectionTest.cpp",

@@ -1,9 +1,11 @@
-static_library("CFGuard") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("CFGuard") {
   output_name = "LLVMCFGuard"
   deps = [
-    "//llvm/lib/IR",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "CFGuard.cpp" ]
 }

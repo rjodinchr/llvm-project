@@ -1,9 +1,11 @@
-static_library("ObjCopy") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("ObjCopy") {
   output_name = "LLVMObjCopy"
   deps = [
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   include_dirs = [ "." ]
   sources = [

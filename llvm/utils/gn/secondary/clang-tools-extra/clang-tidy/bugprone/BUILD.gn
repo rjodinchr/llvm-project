@@ -1,19 +1,21 @@
-static_library("bugprone") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("bugprone") {
   output_name = "clangTidyBugproneModule"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/clang-tidy/cppcoreguidelines",
-    "//clang-tools-extra/clang-tidy/utils",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Analysis/FlowSensitive",
-    "//clang/lib/Analysis/FlowSensitive/Models",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//clang/lib/Tooling",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/cppcoreguidelines",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/utils",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Analysis/FlowSensitive",
+    "${llvm_root_dir}clang/lib/Analysis/FlowSensitive/Models",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "ArgumentCommentCheck.cpp",

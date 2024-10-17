@@ -1,9 +1,11 @@
-static_library("InterfaceStub") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("InterfaceStub") {
   output_name = "LLVMInterfaceStub"
   deps = [
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
 
   sources = [

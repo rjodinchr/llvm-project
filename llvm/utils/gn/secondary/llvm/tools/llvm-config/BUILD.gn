@@ -1,13 +1,15 @@
-import("//llvm/lib/Target/targets_string.gni")
-import("//llvm/utils/gn/build/buildflags.gni")
-import("//llvm/utils/gn/build/libs/pthread/enable.gni")
-import("//llvm/utils/gn/build/libs/xml/enable.gni")
-import("//llvm/utils/gn/build/libs/zlib/enable.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/lib/Target/targets_string.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/buildflags.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/libs/pthread/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/libs/xml/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/libs/zlib/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
+import("${llvm_root_dir}llvm/version.gni")
 
 action("write_extension_dependencies") {
-  script = "//llvm/utils/gn/secondary/llvm/tools/llvm-config/write_extension_dependencies.py"
+  script = "${llvm_root_dir}llvm/utils/gn/secondary/llvm/tools/llvm-config/write_extension_dependencies.py"
   outputs = [ "$target_gen_dir/ExtensionDependencies.inc" ]
   args = [
     "-o",
@@ -68,7 +70,7 @@ write_cmake_config("BuildVariables.inc") {
 
   values = [
     "CMAKE_INSTALL_INCLUDEDIR=include",
-    "LLVM_SRC_ROOT=" + rebase_path("//llvm"),
+    "LLVM_SRC_ROOT=" + rebase_path("${llvm_root_dir}llvm"),
     "LLVM_OBJ_ROOT=" + rebase_path(root_out_dir),
 
     # FIXME: Only the bits needed to run LLVM's test are implemented.
@@ -93,7 +95,7 @@ write_cmake_config("BuildVariables.inc") {
 }
 
 action("LibraryDependencies.inc") {
-  script = "//llvm/utils/gn/build/write_library_dependencies.py"
+  script = "${llvm_root_dir}llvm/utils/gn/build/write_library_dependencies.py"
   output = "$target_gen_dir/LibraryDependencies.inc"
   args = [
     "-o",
@@ -102,15 +104,15 @@ action("LibraryDependencies.inc") {
   outputs = [ output ]
 }
 
-executable("llvm-config") {
+llvm_executable("llvm-config") {
   deps = [
     ":BuildVariables.inc",
     ":LibraryDependencies.inc",
     ":write_extension_dependencies",
-    "//llvm/include/llvm/Config:config",
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
 
   # To pick up the generated inc files.

@@ -1,14 +1,16 @@
-static_library("Symbolize") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Symbolize") {
   output_name = "LLVMSymbolize"
   deps = [
-    "//llvm/include/llvm/Config:config",
-    "//llvm/lib/DebugInfo/BTF",
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/DebugInfo/PDB",
-    "//llvm/lib/Demangle",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/lib/DebugInfo/BTF",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/DebugInfo/PDB",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "DIPrinter.cpp",

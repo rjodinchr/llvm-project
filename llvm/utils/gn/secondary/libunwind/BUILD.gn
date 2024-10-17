@@ -1,12 +1,14 @@
-import("//llvm/lib/Target/targets.gni")
-import("//llvm/utils/gn/build/toolchain/compiler.gni")
+import("//build_overrides/llvm.gni")
 
-supported_toolchains = [ "//llvm/utils/gn/build/toolchain:stage2_unix" ] +
+import("${llvm_root_dir}llvm/lib/Target/targets.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/toolchain/compiler.gni")
+
+supported_toolchains = [ "${llvm_root_dir}llvm/utils/gn/build/toolchain:stage2_unix" ] +
                        supported_android_toolchains
 
 group("libunwind") {
   deps = []
   foreach(toolchain, supported_toolchains) {
-    deps += [ "//libunwind/src($toolchain)" ]
+    deps += [ "${llvm_root_dir}libunwind/src($toolchain)" ]
   }
 }

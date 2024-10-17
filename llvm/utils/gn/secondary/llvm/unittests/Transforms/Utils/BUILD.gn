@@ -1,15 +1,17 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("UtilsTests") {
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/AsmParser",
-    "//llvm/lib/Bitcode/Writer",
-    "//llvm/lib/IR",
-    "//llvm/lib/Passes",
-    "//llvm/lib/Support",
-    "//llvm/lib/Transforms/Utils",
-    "//llvm/lib/Transforms/Vectorize",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/AsmParser",
+    "${llvm_root_dir}llvm/lib/Bitcode/Writer",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/Passes",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Transforms/Vectorize",
   ]
   sources = [
     "ASanStackFrameLayoutTest.cpp",

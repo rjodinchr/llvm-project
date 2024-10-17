@@ -1,11 +1,13 @@
-static_library("Testing") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Testing") {
   output_name = "clangTesting"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   testonly = true
   deps = [
-    "//clang/lib/Basic",
-    "//llvm/lib/Support",
-    "//third-party/unittest:gtest",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}third-party/unittest:gtest",
   ]
   sources = [
     "CommandLineArgs.cpp",

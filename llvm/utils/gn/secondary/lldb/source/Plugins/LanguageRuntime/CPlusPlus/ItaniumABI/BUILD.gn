@@ -1,20 +1,22 @@
-static_library("ItaniumABI") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("ItaniumABI") {
   output_name = "lldbPluginCXXItaniumABI"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//lldb/source/Breakpoint",
-    "//lldb/source/Core",
-    "//lldb/source/Interpreter",
-    "//lldb/source/Plugins/LanguageRuntime/CPlusPlus",
-    "//lldb/source/Plugins/TypeSystem/Clang",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Breakpoint",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Interpreter",
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/CPlusPlus",
+    "${llvm_root_dir}lldb/source/Plugins/TypeSystem/Clang",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
   ]
 
   # Reaches into Plugins/LanguageRuntime/CPlusPlus.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [ "ItaniumABILanguageRuntime.cpp" ]
 }

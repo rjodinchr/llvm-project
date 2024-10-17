@@ -1,9 +1,11 @@
-executable("llvm-diff") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-diff") {
   deps = [
     "lib",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-diff.cpp" ]
 }

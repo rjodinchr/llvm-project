@@ -1,16 +1,18 @@
-static_library("OpenMP") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("OpenMP") {
   output_name = "LLVMFrontendOpenMP"
   deps = [
-    "//llvm/lib/Analysis",
-    "//llvm/lib/Frontend/Offloading",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/Transforms/Scalar",
-    "//llvm/lib/Transforms/Utils",
+    "${llvm_root_dir}llvm/lib/Analysis",
+    "${llvm_root_dir}llvm/lib/Frontend/Offloading",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Transforms/Scalar",
+    "${llvm_root_dir}llvm/lib/Transforms/Utils",
   ]
-  public_deps = [ "//llvm/include/llvm/Frontend/OpenMP:public_tablegen" ]
+  public_deps = [ "${llvm_root_dir}llvm/include/llvm/Frontend/OpenMP:public_tablegen" ]
   sources = [
     "OMP.cpp",
     "OMPContext.cpp",

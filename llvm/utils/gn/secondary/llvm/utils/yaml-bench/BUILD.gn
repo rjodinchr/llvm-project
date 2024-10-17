@@ -1,4 +1,6 @@
-executable("yaml-bench") {
-  deps = [ "//llvm/lib/Support" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("yaml-bench") {
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [ "YAMLBench.cpp" ]
 }

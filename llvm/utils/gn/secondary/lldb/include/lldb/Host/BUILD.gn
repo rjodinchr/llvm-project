@@ -1,6 +1,8 @@
-import("//llvm/utils/gn/build/libs/curl/enable.gni")
-import("//llvm/utils/gn/build/libs/xml/enable.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/libs/curl/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/libs/xml/enable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
 import("libedit.gni")
 
 # In lldb/cmake/modules/LLDBGenerateConfig.cmake,

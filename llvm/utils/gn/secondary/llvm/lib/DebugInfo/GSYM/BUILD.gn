@@ -1,9 +1,11 @@
-static_library("GSYM") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("GSYM") {
   output_name = "LLVMDebugInfoGSYM"
   deps = [
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "DwarfTransformer.cpp",

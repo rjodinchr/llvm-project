@@ -1,6 +1,8 @@
-import("//clang/utils/TableGen/clang_tablegen.gni")
-import("//llvm/utils/gn/build/write_cmake_config.gni")
-import("//llvm/version.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/utils/TableGen/clang_tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/write_cmake_config.gni")
+import("${llvm_root_dir}llvm/version.gni")
 
 # Version header.
 

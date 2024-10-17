@@ -1,3 +1,5 @@
+import("//build_overrides/llvm.gni")
+
 # The LLDB_IN_LIBLLDB setup requires that liblldb is a shared_library
 # on Windows.
 # FIXME: Consider making it a shared_library everywhere like in cmake?
@@ -16,24 +18,24 @@ target(liblldb_type, "liblldb") {
   # XXX LLDB_ENABLE_LUA
 
   output_name = "liblldb"  # XXX lib prefix?
-  configs += [ "//llvm/utils/gn/build:lldb_code" ]
-  public_deps = [ "//lldb/include/lldb/API:SBLanguages" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:lldb_code" ]
+  public_deps = [ "${llvm_root_dir}lldb/include/lldb/API:SBLanguages" ]
   deps = [
-    "//lldb/include/lldb/Host:Config",
-    "//lldb/source/Breakpoint",
-    "//lldb/source/Core",
-    "//lldb/source/DataFormatters",
-    "//lldb/source/Expression",
-    "//lldb/source/Host",
-    "//lldb/source/Initialization",
-    "//lldb/source/Interpreter",
-    "//lldb/source/Plugins:LldbAllPlugins",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
-    "//lldb/source/Version",
-    "//lldb/tools/argdumper:lldb-argdumper",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}lldb/include/lldb/Host:Config",
+    "${llvm_root_dir}lldb/source/Breakpoint",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/DataFormatters",
+    "${llvm_root_dir}lldb/source/Expression",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Initialization",
+    "${llvm_root_dir}lldb/source/Interpreter",
+    "${llvm_root_dir}lldb/source/Plugins:LldbAllPlugins",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
+    "${llvm_root_dir}lldb/source/Version",
+    "${llvm_root_dir}lldb/tools/argdumper:lldb-argdumper",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # SBTarget.cpp includes Commands-internal header Commands/CommandObjectBreakpoint.h

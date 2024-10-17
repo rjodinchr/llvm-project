@@ -1,16 +1,18 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("Opts") {
   visibility = [ ":llvm-cvtres" ]
   args = [ "-gen-opt-parser-defs" ]
 }
 
-executable("llvm-cvtres") {
+llvm_executable("llvm-cvtres") {
   deps = [
     ":Opts",
-    "//llvm/lib/Object",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "llvm-cvtres.cpp" ]
 }

@@ -1,12 +1,14 @@
-static_library("Models") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Models") {
   output_name = "clangAnalysisFlowSensitiveModels"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Analysis",
-    "//clang/lib/Analysis/FlowSensitive",
-    "//clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/Analysis/FlowSensitive",
+    "${llvm_root_dir}clang/lib/Basic",
   ]
   sources = [
     "ChromiumCheckModel.cpp",

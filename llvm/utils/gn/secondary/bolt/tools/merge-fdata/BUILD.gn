@@ -1,8 +1,10 @@
-executable("merge-fdata") {
-  configs += [ "//llvm/utils/gn/build:bolt_code" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("merge-fdata") {
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:bolt_code" ]
   deps = [
-    "//llvm/include/llvm/IR:public_tablegen",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}llvm/include/llvm/IR:public_tablegen",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [ "merge-fdata.cpp" ]
 

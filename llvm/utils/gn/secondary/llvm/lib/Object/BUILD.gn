@@ -1,17 +1,19 @@
-static_library("Object") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Object") {
   output_name = "LLVMObject"
   deps = [
-    "//llvm/include/llvm/Config:llvm-config",
-    "//llvm/include/llvm/Support:write_vcsrevision",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/Bitcode/Reader",
-    "//llvm/lib/IR",
-    "//llvm/lib/IRReader",
-    "//llvm/lib/MC",
-    "//llvm/lib/MC/MCParser",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
-    "//llvm/lib/TextAPI",
+    "${llvm_root_dir}llvm/include/llvm/Config:llvm-config",
+    "${llvm_root_dir}llvm/include/llvm/Support:write_vcsrevision",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/Bitcode/Reader",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/IRReader",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/MC/MCParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/TextAPI",
   ]
 
   sources = [

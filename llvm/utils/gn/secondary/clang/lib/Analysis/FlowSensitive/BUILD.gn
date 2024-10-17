@@ -1,5 +1,7 @@
+import("//build_overrides/llvm.gni")
+
 action("HTMLLogger") {
-  script = "//clang/utils/bundle_resources.py"
+  script = "${llvm_root_dir}clang/utils/bundle_resources.py"
   outputs = [ "$target_gen_dir/HTMLLogger.inc" ]
   inputs = [
     "HTMLLogger.html",
@@ -10,13 +12,13 @@ action("HTMLLogger") {
       rebase_path(outputs, root_build_dir) + rebase_path(inputs, root_build_dir)
 }
 
-static_library("FlowSensitive") {
+llvm_static_library("FlowSensitive") {
   output_name = "clangAnalysisFlowSensitive"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
     ":HTMLLogger",
-    "//clang/lib/AST",
-    "//clang/lib/Analysis",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Analysis",
   ]
   include_dirs = [
     # To pick up HTMLLogger.inc:

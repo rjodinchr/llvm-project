@@ -1,4 +1,6 @@
-executable("split-file") {
-  deps = [ "//llvm/lib/Support" ]
+import("//build_overrides/llvm.gni")
+
+llvm_executable("split-file") {
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
   sources = [ "split-file.cpp" ]
 }

@@ -1,34 +1,36 @@
-import("//third-party/unittest/unittest.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}third-party/unittest/unittest.gni")
 
 unittest("ClangTidyTests") {
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/clang-tidy/android",
-    "//clang-tools-extra/clang-tidy/google",
-    "//clang-tools-extra/clang-tidy/llvm",
-    "//clang-tools-extra/clang-tidy/misc",
-    "//clang-tools-extra/clang-tidy/modernize",
-    "//clang-tools-extra/clang-tidy/objc",
-    "//clang-tools-extra/clang-tidy/readability",
-    "//clang-tools-extra/clang-tidy/utils",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Frontend",
-    "//clang/lib/Lex",
-    "//clang/lib/Serialization",
-    "//clang/lib/Testing",
-    "//clang/lib/Tooling",
-    "//clang/lib/Tooling/Core",
-    "//clang/lib/Tooling/Transformer",
-    "//llvm/lib/Support",
-    "//llvm/lib/Testing/Annotations",
-    "//llvm/lib/Testing/Support",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/android",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/google",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/llvm",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/misc",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/modernize",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/objc",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/readability",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/utils",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Frontend",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}clang/lib/Serialization",
+    "${llvm_root_dir}clang/lib/Testing",
+    "${llvm_root_dir}clang/lib/Tooling",
+    "${llvm_root_dir}clang/lib/Tooling/Core",
+    "${llvm_root_dir}clang/lib/Tooling/Transformer",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Testing/Annotations",
+    "${llvm_root_dir}llvm/lib/Testing/Support",
   ]
   include_dirs = [
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/include-cleaner/include",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/include-cleaner/include",
   ]
   sources = [
     "AddConstTest.cpp",

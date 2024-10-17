@@ -1,11 +1,13 @@
-executable("llvm-xray") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-xray") {
   deps = [
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/DebugInfo/Symbolize",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:TargetsToBuild",
-    "//llvm/lib/XRay",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/DebugInfo/Symbolize",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:TargetsToBuild",
+    "${llvm_root_dir}llvm/lib/XRay",
   ]
   sources = [
     "func-id-helper.cpp",

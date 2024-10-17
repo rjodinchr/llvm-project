@@ -1,26 +1,28 @@
-static_library("NativePDB") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("NativePDB") {
   output_name = "lldbPluginSymbolFileNativePDB"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//clang/lib/AST",
-    "//clang/lib/Lex",
-    "//lldb/source/Core",
-    "//lldb/source/Plugins/ObjectFile/PDB",
-    "//lldb/source/Symbol",
-    "//lldb/source/Utility",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/Plugins/ObjectFile/PDB",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Utility",
 
-    #"//lldb/source/Plugins/TypeSystem/Clang", # 3-hop dependency cycle.
-    "//llvm/lib/DebugInfo/CodeView",
-    "//llvm/lib/DebugInfo/PDB",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    #"${llvm_root_dir}lldb/source/Plugins/TypeSystem/Clang", # 3-hop dependency cycle.
+    "${llvm_root_dir}llvm/lib/DebugInfo/CodeView",
+    "${llvm_root_dir}llvm/lib/DebugInfo/PDB",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
 
   # Reaches into Plugins/ExpressionParser.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "CodeViewRegisterMapping.cpp",
     "CompileUnitIndex.cpp",

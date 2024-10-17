@@ -1,7 +1,9 @@
-source_set("sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
-  deps = [ "//llvm/utils/gn/build/libs/pthread" ]
+import("//build_overrides/llvm.gni")
+
+llvm_source_set("sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
+  deps = [ "${llvm_root_dir}llvm/utils/gn/build/libs/pthread" ]
   libs = []
   if (current_os == "linux" || current_os == "android") {
     libs += [ "dl" ]
@@ -175,9 +177,9 @@ source_set("sources") {
   ]
 }
 
-source_set("runtime_thunk") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("runtime_thunk") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   sources = [ "sanitizer_win_thunk_interception.cpp" ]
   defines = [
     "SANITIZER_DYNAMIC_RUNTIME_THUNK",
@@ -189,9 +191,9 @@ source_set("runtime_thunk") {
   }
 }
 
-source_set("sancov_runtime_thunk") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
+llvm_source_set("sancov_runtime_thunk") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
   sources = [
     "sanitizer_coverage_win_runtime_thunk.cpp",
     "sanitizer_coverage_win_sections.cpp",
@@ -210,9 +212,9 @@ source_set("sancov_runtime_thunk") {
 # SANITIZER_LIBCDEP_SOURCES when sanitizer_common library must not depend on
 # libc. This is currently unreferenced and exists to make
 # sync_source_lists_from_cmake happy.
-source_set("nolibc_sources") {
-  configs -= [ "//llvm/utils/gn/build:llvm_code" ]
-  configs += [ "//llvm/utils/gn/build:crt_code" ]
-  deps = [ "//llvm/utils/gn/build/libs/pthread" ]
+llvm_source_set("nolibc_sources") {
+  configs -= [ "${llvm_root_dir}llvm/utils/gn/build:llvm_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:crt_code" ]
+  deps = [ "${llvm_root_dir}llvm/utils/gn/build/libs/pthread" ]
   sources = [ "sanitizer_common_nolibc.cpp" ]
 }

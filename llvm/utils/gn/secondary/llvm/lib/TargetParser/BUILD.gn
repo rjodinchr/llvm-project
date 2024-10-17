@@ -1,7 +1,9 @@
-static_library("TargetParser") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("TargetParser") {
   output_name = "LLVMTargetParser"
-  deps = [ "//llvm/lib/Support" ]
-  public_deps = [ "//llvm/include/llvm/TargetParser:gen" ]
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
+  public_deps = [ "${llvm_root_dir}llvm/include/llvm/TargetParser:gen" ]
   include_dirs = [
     "Unix",
     "Windows",

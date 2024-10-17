@@ -1,7 +1,9 @@
-executable("lit-cpuid") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("lit-cpuid") {
   deps = [
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "lit-cpuid.cpp" ]
 }

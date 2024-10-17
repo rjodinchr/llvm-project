@@ -1,5 +1,7 @@
-source_set("UnitTestMain") {
-  deps = [ "//llvm/lib/Support" ]
+import("//build_overrides/llvm.gni")
+
+llvm_source_set("UnitTestMain") {
+  deps = [ "${llvm_root_dir}llvm/lib/Support" ]
 
   # Make targets depending on this also depend on gtest, to get the gtest
   # include_dir.
@@ -10,7 +12,7 @@ source_set("UnitTestMain") {
 
 # Nothing depends on this target, but llvm-config expects it to exist when
 # it runs with `--link-static --system-libs`, so humor it.
-static_library("gtest_main") {
+llvm_static_library("gtest_main") {
   deps = [ ":UnitTestMain" ]
   complete_static_lib = true
   testonly = true

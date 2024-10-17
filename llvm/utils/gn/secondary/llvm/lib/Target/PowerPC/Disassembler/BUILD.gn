@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("PPCGenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,14 +8,14 @@ tablegen("PPCGenDisassemblerTables") {
   td_file = "../PPC.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMPowerPCDisassembler"
   deps = [
     ":PPCGenDisassemblerTables",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/PowerPC/MCTargetDesc",
-    "//llvm/lib/Target/PowerPC/TargetInfo",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/PowerPC/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/Target/PowerPC/TargetInfo",
   ]
   include_dirs = [ ".." ]
   sources = [ "PPCDisassembler.cpp" ]

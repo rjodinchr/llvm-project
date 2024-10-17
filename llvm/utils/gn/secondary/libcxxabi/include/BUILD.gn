@@ -1,4 +1,6 @@
-import("//clang/resource_dir.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}clang/resource_dir.gni")
 
 copy("include") {
   sources = [

@@ -1,7 +1,9 @@
-import("//llvm/tools/binutils_symlinks.gni")
-import("//llvm/utils/TableGen/tablegen.gni")
-import("//llvm/utils/gn/build/driver_executable.gni")
-import("//llvm/utils/gn/build/symlink_or_copy.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/tools/binutils_symlinks.gni")
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/driver_executable.gni")
+import("${llvm_root_dir}llvm/utils/gn/build/symlink_or_copy.gni")
 
 tablegen("Opts") {
   visibility = [ ":llvm-cxxfilt" ]
@@ -27,10 +29,10 @@ group("symlinks") {
 driver_executable("llvm-cxxfilt") {
   deps = [
     ":Opts",
-    "//llvm/lib/Demangle",
-    "//llvm/lib/Option",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/Demangle",
+    "${llvm_root_dir}llvm/lib/Option",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [ "llvm-cxxfilt.cpp" ]
 }

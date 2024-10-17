@@ -1,18 +1,20 @@
-static_library("cert") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("cert") {
   output_name = "clangTidyCERTModule"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang-tools-extra/clang-tidy",
-    "//clang-tools-extra/clang-tidy/google",
-    "//clang-tools-extra/clang-tidy/misc",
-    "//clang-tools-extra/clang-tidy/performance",
-    "//clang-tools-extra/clang-tidy/readability",
-    "//clang-tools-extra/clang-tidy/utils",
-    "//clang/lib/AST",
-    "//clang/lib/ASTMatchers",
-    "//clang/lib/Basic",
-    "//clang/lib/Lex",
-    "//llvm/lib/Support",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/google",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/misc",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/performance",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/readability",
+    "${llvm_root_dir}clang-tools-extra/clang-tidy/utils",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}clang/lib/ASTMatchers",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}clang/lib/Lex",
+    "${llvm_root_dir}llvm/lib/Support",
   ]
   sources = [
     "CERTTidyModule.cpp",

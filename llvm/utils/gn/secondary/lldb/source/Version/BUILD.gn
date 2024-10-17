@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/write_vcsrevision.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/write_vcsrevision.gni")
 
 # Configure the VCSVersion.inc file
 config("write_vcsrevision_config") {
@@ -14,18 +16,18 @@ write_vcsrevision("write_vcsversion") {
   public_configs = [ ":write_vcsrevision_config" ]
 }
 
-static_library("Version") {
+llvm_static_library("Version") {
   output_name = "lldbVersion"
   configs += [
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
 
     # To pick up clang/Basic/Version.h.
-    "//llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
   ]
   sources = [ "Version.cpp" ]
   public_deps = [
     # public_dep because public header Version.h includes generated Version.inc.
-    "//lldb/include/lldb/Version:version",
+    "${llvm_root_dir}lldb/include/lldb/Version:version",
   ]
   deps = [ ":write_vcsversion" ]
 }

@@ -1,27 +1,29 @@
-static_library("ObjC") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("ObjC") {
   output_name = "lldbPluginObjCLanguage"
   configs += [
-    "//llvm/utils/gn/build:clang_code",
-    "//llvm/utils/gn/build:lldb_code",
+    "${llvm_root_dir}llvm/utils/gn/build:clang_code",
+    "${llvm_root_dir}llvm/utils/gn/build:lldb_code",
   ]
   deps = [
-    "//clang/lib/AST",
-    "//lldb/source/Core",
-    "//lldb/source/DataFormatters",
-    "//lldb/source/Expression",
-    "//lldb/source/Host",
-    "//lldb/source/Plugins/Language/ClangCommon",
-    "//lldb/source/Plugins/LanguageRuntime/ObjC/AppleObjCRuntime",
-    "//lldb/source/Symbol",
-    "//lldb/source/Target",
-    "//lldb/source/Utility",
+    "${llvm_root_dir}clang/lib/AST",
+    "${llvm_root_dir}lldb/source/Core",
+    "${llvm_root_dir}lldb/source/DataFormatters",
+    "${llvm_root_dir}lldb/source/Expression",
+    "${llvm_root_dir}lldb/source/Host",
+    "${llvm_root_dir}lldb/source/Plugins/Language/ClangCommon",
+    "${llvm_root_dir}lldb/source/Plugins/LanguageRuntime/ObjC/AppleObjCRuntime",
+    "${llvm_root_dir}lldb/source/Symbol",
+    "${llvm_root_dir}lldb/source/Target",
+    "${llvm_root_dir}lldb/source/Utility",
 
-    #"//lldb/source/Plugins/TypeSystem/Clang", # 3-hop dependency cycle.
-    "//llvm/lib/Support",
+    #"${llvm_root_dir}lldb/source/Plugins/TypeSystem/Clang", # 3-hop dependency cycle.
+    "${llvm_root_dir}llvm/lib/Support",
   ]
 
   # Uses source-relative includes for own headers.
-  include_dirs = [ "//lldb/source" ]
+  include_dirs = [ "${llvm_root_dir}lldb/source" ]
   sources = [
     "CF.cpp",
     "CFBasicHash.cpp",

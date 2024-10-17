@@ -1,9 +1,11 @@
-static_library("WindowsManifest") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("WindowsManifest") {
   output_name = "LLVMWindowsManifest"
   deps = [
-    "//llvm/include/llvm/Config:config",
-    "//llvm/lib/Support",
-    "//llvm/utils/gn/build/libs/xml",
+    "${llvm_root_dir}llvm/include/llvm/Config:config",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/utils/gn/build/libs/xml",
   ]
   sources = [ "WindowsManifestMerger.cpp" ]
 }

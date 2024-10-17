@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("AMDGPUGenAsmWriter") {
   visibility = [ ":MCTargetDesc" ]
@@ -78,7 +80,7 @@ group("tablegen") {
   ]
 }
 
-static_library("MCTargetDesc") {
+llvm_static_library("MCTargetDesc") {
   output_name = "LLVMAMDGPUDesc"
   public_deps = [ ":tablegen" ]
   deps = [
@@ -86,18 +88,18 @@ static_library("MCTargetDesc") {
     ":AMDGPUGenMCCodeEmitter",
     ":R600GenAsmWriter",
     ":R600GenMCCodeEmitter",
-    "//llvm/lib/BinaryFormat",
-    "//llvm/lib/CodeGen",
-    "//llvm/lib/IR",
-    "//llvm/lib/MC",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/AMDGPU/TargetInfo",
-    "//llvm/lib/Target/AMDGPU/Utils",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/BinaryFormat",
+    "${llvm_root_dir}llvm/lib/CodeGen",
+    "${llvm_root_dir}llvm/lib/IR",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/TargetInfo",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/Utils",
+    "${llvm_root_dir}llvm/lib/TargetParser",
 
     # AMDGPUMCExpr.cpp includes GCNSubtarget.h which after 490e348e679
     # includes the generated AMDGPUGenRegisterBank.inc file :/
-    "//llvm/lib/Target/AMDGPU/:AMDGPUGenRegisterBank",
+    "${llvm_root_dir}llvm/lib/Target/AMDGPU/:AMDGPUGenRegisterBank",
   ]
   include_dirs = [ ".." ]
   sources = [

@@ -1,4 +1,6 @@
-import("//llvm/utils/TableGen/tablegen.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/TableGen/tablegen.gni")
 
 tablegen("RISCVGenDisassemblerTables") {
   visibility = [ ":Disassembler" ]
@@ -6,13 +8,13 @@ tablegen("RISCVGenDisassemblerTables") {
   td_file = "../RISCV.td"
 }
 
-static_library("Disassembler") {
+llvm_static_library("Disassembler") {
   output_name = "LLVMRISCVDisassembler"
   deps = [
     ":RISCVGenDisassemblerTables",
-    "//llvm/lib/MC/MCDisassembler",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target/RISCV/MCTargetDesc",
+    "${llvm_root_dir}llvm/lib/MC/MCDisassembler",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target/RISCV/MCTargetDesc",
   ]
   include_dirs = [ ".." ]
   sources = [ "RISCVDisassembler.cpp" ]

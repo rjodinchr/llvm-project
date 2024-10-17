@@ -1,10 +1,12 @@
-static_library("Lex") {
+import("//build_overrides/llvm.gni")
+
+llvm_static_library("Lex") {
   output_name = "clangLex"
-  configs += [ "//llvm/utils/gn/build:clang_code" ]
+  configs += [ "${llvm_root_dir}llvm/utils/gn/build:clang_code" ]
   deps = [
-    "//clang/lib/Basic",
-    "//llvm/lib/Support",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}clang/lib/Basic",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "DependencyDirectivesScanner.cpp",

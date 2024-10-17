@@ -1,4 +1,6 @@
-import("//llvm/utils/gn/build/libs/zstd/enable.gni")
+import("//build_overrides/llvm.gni")
+
+import("${llvm_root_dir}llvm/utils/gn/build/libs/zstd/enable.gni")
 
 config("zstd_config") {
   visibility = [ ":zstd" ]

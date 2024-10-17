@@ -1,12 +1,14 @@
-executable("llvm-dwarfdump") {
+import("//build_overrides/llvm.gni")
+
+llvm_executable("llvm-dwarfdump") {
   deps = [
-    "//llvm/lib/DebugInfo/DWARF",
-    "//llvm/lib/MC",
-    "//llvm/lib/Object",
-    "//llvm/lib/Support",
-    "//llvm/lib/Target:AllTargetsDescs",
-    "//llvm/lib/Target:AllTargetsInfos",
-    "//llvm/lib/TargetParser",
+    "${llvm_root_dir}llvm/lib/DebugInfo/DWARF",
+    "${llvm_root_dir}llvm/lib/MC",
+    "${llvm_root_dir}llvm/lib/Object",
+    "${llvm_root_dir}llvm/lib/Support",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsDescs",
+    "${llvm_root_dir}llvm/lib/Target:AllTargetsInfos",
+    "${llvm_root_dir}llvm/lib/TargetParser",
   ]
   sources = [
     "SectionSizes.cpp",
