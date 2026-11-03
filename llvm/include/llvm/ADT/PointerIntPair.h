@@ -140,7 +140,8 @@ public:
   // Allow PointerIntPairs to be created from const void * if and only if the
   // pointer type could be created from a const void *.
   static PointerIntPair getFromOpaqueValue(const void *V) {
-    (void)PtrTraits::getFromVoidPointer(V);
+    using Unused = decltype(PtrTraits::getFromVoidPointer(V));
+    (void)sizeof(Unused);
     return getFromOpaqueValue(const_cast<void *>(V));
   }
 
