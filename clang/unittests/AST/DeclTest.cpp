@@ -1056,3 +1056,17 @@ TEST(Decl, DeclGroupRefOpaquePtrRoundTrip) {
   EXPECT_EQ(GroupRoundTrip.begin()[0], A);
   EXPECT_EQ(GroupRoundTrip.begin()[1], B);
 }
+
+TEST(Decl, RedeclarableFirstDecl) {
+  auto AST = tooling::buildASTFromCode("void f(); void f() {}");
+  ASTContext &Ctx = AST->getASTContext();
+
+  auto *FD = const_cast<FunctionDecl *>(selectFirst<FunctionDecl>(
+      "f", match(functionDecl(hasName("f"), isDefinition()).bind("f"), Ctx)));
+  ASSERT_NE(FD, nullptr);
+  FunctionDecl *First = FD->getFirstDecl();
+  ASSERT_NE(First, nullptr);
+  EXPECT_TRUE(First->isFirstDecl());
+  EXPECT_FALSE(FD->isFirstDecl());
+  EXPECT_EQ(FD->getPreviousDecl(), First);
+}
